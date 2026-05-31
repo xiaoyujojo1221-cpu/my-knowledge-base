@@ -1,287 +1,322 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22%E6%88%91%E7%9A%84%E7%9F%A5%E8%AF%86%E5%BA%93%22%2C%22short_name%22%3A%22%E7%9F%A5%E8%AF%86%E5%BA%93%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f7f5f0%22%2C%22theme_color%22%3A%22%231a1814%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22%2Ficons%2Ficon-192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="知识库">
-  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADpElEQVR42u3cMU7DQBCG0RyJhpKTI1FT0yBuQYMooaFGTuK1Z+Z/lr6OguzOkyLtOpeLx+NZ/zw9Pvz815a/0Zy2zsTooQcAgGv+fuTgAwDAGAhnLIiyAJSEUGFBlAWgBISKC6IsAKdBqL4gygJwKIIuC6IsAMsRdFwQZQFYBqH7gigLwK4IpiyIsgDshgAAxQKYtiDKAnAXgqkLoiwANyGYviDKAnA1AgAUCyBlQZQFYDMCABQLIG1BlLffAAiASsMPAAAlEACgWADpC6K8/QZAAACgeAAWRKn7DYAAsCACwIIIAAsiAAAQAAAIAACUAGDSj+yqDwCDJ/kKJAEgASABIAEgASABIAHw1/fXZ+s+3t821/2zAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEkAnl9eXyu2AkCnzwoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAk2AnwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArkK4CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAk2Emwk2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcBfIXSB3gQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcBDmIMxBGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC4C+QuEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgIcxAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEMASABIAEgASABIAEgASABI1wOo8tgQgxc7eADkAfAVCAAAAAAAAAAAAAAAgwEAAAIAAAEAgAA47jzCgihtv0sdhgEAAAAGA4Azr2MAoJT9LncnCAAASlzGA0DT97vkzVAAAChzFRsATd3vsu8HAABAqRdxANC0/S79lhgAAJR7DRMATdnv8u8LAwBA2RfwAVDX/W7zqxEAAFAWwBH/LAAAlB3+IxAAAEDp4V8NAQAAyg/+SgQAANBm+FcgAACAVsO/NwQAAGg3+HtCAACAtoO/BwQAAGg/+PdAAACAMYN/CwYAADhj6H8Bp9eZgDy978sAAAAASUVORK5CYII=">
-  <meta name="theme-color" content="#1a1814">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="知识库">
+<meta name="theme-color" content="#1a1814">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>我的知识库</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f7f5f0;
-  --bg2: #ffffff;
-  --bg3: #eeeae2;
-  --text: #1a1814;
-  --text2: #6b6760;
-  --text3: #a09d97;
-  --border: rgba(26,24,20,0.1);
-  --border2: rgba(26,24,20,0.18);
-  --accent: #3d3530;
-  --accent2: #7c6f5e;
-  --purple: #534AB7;
-  --purple-bg: #eeedfe;
-  --purple-text: #3c3489;
-  --teal: #0f6e56;
-  --teal-bg: #e1f5ee;
-  --teal-text: #085041;
-  --amber: #854f0b;
-  --amber-bg: #faeeda;
-  --amber-text: #633806;
-  --danger: #c0392b;
-  --radius: 10px;
-  --radius-sm: 6px;
+:root{
+  --bg:#f7f5f0;--bg2:#ffffff;--bg3:#eeeae2;
+  --text:#1a1814;--text2:#6b6760;--text3:#a09d97;
+  --border:rgba(26,24,20,0.1);--border2:rgba(26,24,20,0.18);
+  --accent:#3d3530;--accent2:#7c6f5e;
+  --danger:#c0392b;--success:#0f6e56;
+  --radius:12px;--radius-sm:8px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --bottom-bar:60px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line-height:1.6;overscroll-behavior:none}
+#app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
-/* ── Lock screen ── */
-#lock{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;flex-direction:column;gap:32px}
-#lock h1{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:500;letter-spacing:.04em;color:var(--text)}
-#lock p{font-size:13px;color:var(--text2);text-align:center}
-.lock-box{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:32px 40px;width:320px;display:flex;flex-direction:column;gap:16px;text-align:center}
-.lock-box input{width:100%;padding:10px 14px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:15px;font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);letter-spacing:.1em;outline:none;text-align:center}
-.lock-box input:focus{border-color:var(--accent2)}
-.lock-err{font-size:12px;color:var(--danger);min-height:16px}
-#lock.hidden{display:none}
+/* Header */
+.header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg2);border-bottom:0.5px solid var(--border);flex-shrink:0;padding-top:max(12px,env(safe-area-inset-top))}
+.header-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:500}
+.header-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.header-right{margin-left:auto;display:flex;gap:8px}
+.icon-btn{width:36px;height:36px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);flex-shrink:0}
+.icon-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── Layout ── */
-#app{display:grid;grid-template-columns:220px 1fr;height:100vh;overflow:hidden}
-.sidebar{background:var(--bg2);border-right:0.5px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
-.sidebar-logo{padding:24px 20px 16px;border-bottom:0.5px solid var(--border)}
-.sidebar-logo h1{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:500;color:var(--text);letter-spacing:.02em}
-.sidebar-logo p{font-size:11px;color:var(--text3);margin-top:2px}
-.sidebar-section{padding:16px 12px 8px}
-.sidebar-label{font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;padding:0 8px;margin-bottom:4px}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--radius-sm);cursor:pointer;font-size:13.5px;color:var(--text2);border:none;background:none;width:100%;text-align:left;transition:all .15s}
-.nav-item:hover{background:var(--bg3);color:var(--text)}
-.nav-item.active{background:var(--bg3);color:var(--text);font-weight:500}
-.nav-icon{width:16px;height:16px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.nav-badge{margin-left:auto;background:var(--bg3);color:var(--text3);font-size:10px;padding:1px 7px;border-radius:20px}
-.cat-area{padding:0 12px 16px}
-.cat-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;cursor:pointer;margin:2px;border:none;font-family:'Noto Sans SC',sans-serif}
+/* Search */
+.search-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg2);border-bottom:0.5px solid var(--border);flex-shrink:0}
+.search-bar svg{width:16px;height:16px;stroke:var(--text3);fill:none;stroke-width:1.8;stroke-linecap:round;flex-shrink:0}
+.search-bar input{flex:1;border:none;background:none;font-size:14px;font-family:'Noto Sans SC',sans-serif;color:var(--text);outline:none}
+.search-bar input::placeholder{color:var(--text3)}
 
-/* ── Main ── */
-.main{display:flex;flex-direction:column;overflow:hidden}
-.topbar{display:flex;align-items:center;gap:10px;padding:14px 24px;border-bottom:0.5px solid var(--border);background:var(--bg2)}
-.search-wrap{flex:1;display:flex;align-items:center;gap:8px;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:7px 12px}
-.search-wrap svg{width:15px;height:15px;stroke:var(--text3);fill:none;stroke-width:1.8;stroke-linecap:round;flex-shrink:0}
-.search-wrap input{border:none;background:none;font-size:13.5px;font-family:'Noto Sans SC',sans-serif;color:var(--text);outline:none;flex:1}
-.search-wrap input::placeholder{color:var(--text3)}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);font-size:13px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;white-space:nowrap;transition:all .15s}
-.btn:hover{background:var(--bg3)}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:#f7f5f0}
-.btn-primary:hover{background:var(--accent2);border-color:var(--accent2)}
-.btn-sm{padding:5px 11px;font-size:12px}
-.btn-danger{color:var(--danger);border-color:rgba(192,57,43,.2)}
-.btn-danger:hover{background:rgba(192,57,43,.06)}
-.content{flex:1;overflow-y:auto;padding:24px}
-.section{display:none}
+/* Content */
+.content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding-bottom:calc(var(--bottom-bar) + var(--safe-bottom) + 16px)}
+.section{display:none;padding:16px}
 .section.active{display:block}
 
-/* ── Stats ── */
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
-.stat-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px 18px}
-.stat-val{font-family:'Noto Serif SC',serif;font-size:28px;font-weight:500;color:var(--text);line-height:1}
-.stat-lbl{font-size:11px;color:var(--text3);margin-top:6px}
+/* Bottom nav */
+.bottom-nav{display:flex;background:var(--bg2);border-top:0.5px solid var(--border);flex-shrink:0;padding-bottom:var(--safe-bottom)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;cursor:pointer;color:var(--text3);border:none;background:none;font-family:'Noto Sans SC',sans-serif;transition:color .15s;position:relative}
+.nav-item.active{color:var(--accent)}
+.nav-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nav-label{font-size:10px}
+.nav-badge{position:absolute;top:8px;right:calc(50% - 18px);background:#E24B4A;color:#fff;font-size:9px;padding:1px 5px;border-radius:10px;min-width:16px;text-align:center;display:none}
 
-/* ── Note cards ── */
-.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.sec-header h2{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:500}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.note-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;cursor:pointer;transition:border-color .15s}
-.note-card:hover{border-color:var(--border2)}
-.note-card h4{font-size:14px;font-weight:500;margin-bottom:6px;color:var(--text)}
-.note-card p{font-size:12px;color:var(--text2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.note-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
-.note-date{font-size:10px;color:var(--text3);margin-top:6px}
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 12px;text-align:center}
+.stat-val{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:500}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:4px}
+
+/* Section header */
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-hd h2{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:500}
+
+/* Note cards */
+.card-list{display:flex;flex-direction:column;gap:10px}
+.note-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer}
+.note-card:active{opacity:.75}
+.note-card-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
+.note-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.note-card h4{font-size:15px;font-weight:500;flex:1;line-height:1.4}
+.note-card p{font-size:13px;color:var(--text2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.note-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;align-items:center}
+.note-date{font-size:10px;color:var(--text3);margin-left:auto}
 .tag{font-size:11px;padding:2px 8px;border-radius:20px}
-.empty{text-align:center;padding:60px 20px;color:var(--text3)}
-.empty-icon{font-size:36px;margin-bottom:12px}
-.empty p{font-size:13px}
 
-/* ── Flashcards ── */
-.fc-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding:12px 0}
-.fc-card{width:100%;max-width:520px;min-height:180px;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:36px 32px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:border-color .15s}
-.fc-card:hover{border-color:var(--border2)}
-.fc-label{font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
-.fc-q{font-size:16px;color:var(--text);line-height:1.6}
-.fc-a{font-size:14px;color:var(--text2);line-height:1.7;margin-top:16px;padding-top:16px;border-top:0.5px solid var(--border);display:none}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:var(--radius-sm);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);font-size:14px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;transition:opacity .15s;white-space:nowrap}
+.btn:active{opacity:.7}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#f7f5f0}
+.btn-sm{padding:7px 14px;font-size:13px}
+.btn-block{width:100%;margin-top:10px}
+.btn-danger{color:var(--danger);border-color:rgba(192,57,43,.25)}
+.btn-success{background:var(--success);border-color:var(--success);color:#fff}
+
+/* FAB */
+.fab{position:fixed;right:20px;bottom:calc(var(--bottom-bar) + var(--safe-bottom) + 16px);width:54px;height:54px;border-radius:50%;background:var(--accent);color:#f7f5f0;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.2);z-index:50}
+.fab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.fab:active{transform:scale(.95)}
+
+/* Empty */
+.empty{text-align:center;padding:48px 20px;color:var(--text3)}
+.empty-icon{font-size:40px;margin-bottom:12px}
+.empty p{font-size:13px;line-height:1.8}
+
+/* Cat scroll */
+.cat-scroll{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-chip{flex-shrink:0;font-size:12px;padding:5px 12px;border-radius:20px;cursor:pointer;border:none;font-family:'Noto Sans SC',sans-serif;white-space:nowrap}
+.cat-chip.all{background:var(--accent);color:#f7f5f0}
+
+/* Flashcards */
+.fc-area{display:flex;flex-direction:column;align-items:center;gap:16px;padding:8px 0}
+.fc-card{width:100%;min-height:200px;background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:32px 24px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.fc-card:active{opacity:.85}
+.fc-side{font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.fc-q{font-size:17px;color:var(--text);line-height:1.6;font-weight:500}
+.fc-a{font-size:14px;color:var(--text2);line-height:1.8;margin-top:18px;padding-top:18px;border-top:0.5px solid var(--border);display:none}
 .fc-card.revealed .fc-a{display:block}
 .fc-hint{font-size:12px;color:var(--text3)}
-.fc-nav{display:flex;gap:10px;align-items:center}
-.fc-progress{font-size:13px;color:var(--text2)}
+.fc-nav{display:flex;gap:10px;width:100%}
+.fc-nav .btn{flex:1}
+.fc-prog{font-size:13px;color:var(--text2);text-align:center}
 
-/* ── AI chat ── */
+/* AI */
 .ai-wrap{border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.ai-messages{padding:20px;min-height:220px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
-.msg{max-width:82%;padding:11px 16px;border-radius:var(--radius);font-size:14px;line-height:1.7}
+.ai-msgs{padding:16px;min-height:180px;max-height:45vh;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:85%;padding:10px 14px;border-radius:var(--radius);font-size:14px;line-height:1.7}
 .msg.user{background:var(--accent);color:#f7f5f0;align-self:flex-end;border-bottom-right-radius:3px}
 .msg.ai{background:var(--bg3);color:var(--text);align-self:flex-start;border-bottom-left-radius:3px}
 .msg.loading{color:var(--text3);font-style:italic}
-.ai-bar{display:flex;gap:8px;padding:14px;border-top:0.5px solid var(--border);background:var(--bg)}
-.ai-bar input{flex:1;padding:9px 14px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans SC',sans-serif;background:var(--bg2);color:var(--text);outline:none}
-.ai-bar input:focus{border-color:var(--accent2)}
+.ai-bar{display:flex;gap:8px;padding:10px 12px;border-top:0.5px solid var(--border);background:var(--bg)}
+.ai-bar input{flex:1;padding:9px 12px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans SC',sans-serif;background:var(--bg2);color:var(--text);outline:none}
 
-/* ── Modals ── */
-.overlay{display:none;position:fixed;inset:0;background:rgba(26,24,20,.45);z-index:100;align-items:center;justify-content:center}
-.overlay.open{display:flex}
-.modal{background:var(--bg2);border-radius:var(--radius);padding:28px;width:90%;max-width:480px;border:0.5px solid var(--border)}
-.modal h3{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:500;margin-bottom:20px}
+/* Drawers */
+.drawer-bg{display:none;position:fixed;inset:0;background:rgba(26,24,20,.5);z-index:100}
+.drawer-bg.open{display:block}
+.drawer{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-radius:20px 20px 0 0;z-index:101;transform:translateY(100%);transition:transform .3s ease;max-height:94vh;display:flex;flex-direction:column}
+.drawer.open{transform:translateY(0)}
+.drawer-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 0;flex-shrink:0}
+.drawer-header{padding:14px 20px 12px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.drawer-header h3{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:500}
+.drawer-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 20px;padding-bottom:calc(16px + var(--safe-bottom));flex:1}
 .form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);outline:none}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent2)}
-.form-group textarea{min-height:120px;resize:vertical;line-height:1.7}
+.form-group label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 13px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:15px;font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);outline:none;-webkit-appearance:none}
+.form-group textarea{resize:none;line-height:1.7}
 .form-hint{font-size:11px;color:var(--text3);margin-top:4px}
-.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
 
-/* ── View modal ── */
-.view-modal{max-width:580px}
-.view-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:12px}
-.view-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:500;flex:1;line-height:1.4}
-.view-body{font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap;max-height:280px;overflow-y:auto;padding:16px;background:var(--bg);border-radius:var(--radius-sm);margin-bottom:14px}
-.view-actions{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+/* ── File upload area ── */
+.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--radius);padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);margin-bottom:14px;position:relative}
+.upload-zone.dragover{border-color:var(--accent);background:rgba(61,53,48,.05)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:28px;margin-bottom:8px}
+.upload-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
+.upload-sub{font-size:12px;color:var(--text3)}
+.file-types{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
+.file-type-badge{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text2);font-weight:500}
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
+/* Processing state */
+.processing-box{background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px;display:none}
+.processing-box.show{display:block}
+.processing-row{display:flex;align-items:center;gap:10px}
+.spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.processing-text{font-size:13px;color:var(--text2)}
+.file-preview{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:14px;display:none}
+.file-preview.show{display:flex;align-items:center;gap:10px}
+.file-preview-icon{font-size:24px;flex-shrink:0}
+.file-preview-info{flex:1;min-width:0}
+.file-preview-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-preview-size{font-size:11px;color:var(--text3);margin-top:2px}
+.file-preview-remove{width:28px;height:28px;border-radius:50%;border:0.5px solid var(--border2);background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:14px;color:var(--text2)}
+
+/* View drawer */
+.view-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:500;line-height:1.4;margin-bottom:10px}
+.view-body{font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap;padding:14px;background:var(--bg);border-radius:var(--radius-sm);margin:12px 0;max-height:40vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.view-file-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);margin-bottom:10px}
+.view-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+
+/* Toast */
+.toast{position:fixed;bottom:calc(var(--bottom-bar) + var(--safe-bottom) + 80px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:#f7f5f0;padding:10px 20px;border-radius:20px;font-size:13px;opacity:0;transition:all .3s;z-index:200;white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-
-/* ── SVG icons inline ── */
-.ico{display:inline-block;vertical-align:middle}
 </style>
 </head>
 <body>
+<div id="app">
+  <div class="header">
+    <div>
+      <div class="header-title">我的知识库</div>
+      <div class="header-sub" id="hdr-sub">个人学习空间</div>
+    </div>
+    <div class="header-right">
+      <div class="icon-btn" onclick="exportData()" title="导出备份">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+    </div>
+  </div>
 
-<!-- Lock screen -->
-<div id="lock">
-  <div style="text-align:center">
-    <h1>我的知识库</h1>
-    <p style="margin-top:6px;font-size:13px;color:var(--text2)">个人专属学习空间</p>
+  <div class="search-bar" id="search-bar" style="display:none">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="search" placeholder="搜索笔记..." oninput="renderNotes()">
   </div>
-  <div class="lock-box">
-    <p style="font-size:13px;color:var(--text2)">请输入访问密码</p>
-    <input type="password" id="pw-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkPw()">
-    <div class="lock-err" id="pw-err"></div>
-    <button class="btn btn-primary" onclick="checkPw()">进入</button>
-    <p style="font-size:11px;color:var(--text3)">默认密码：knowledge123<br>可在代码中修改 PASSWORD 变量</p>
+
+  <div class="content" id="content">
+    <!-- Home -->
+    <div class="section active" id="sec-home">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-val" id="s-notes">0</div><div class="stat-lbl">笔记</div></div>
+        <div class="stat-card"><div class="stat-val" id="s-flash">0</div><div class="stat-lbl">闪卡</div></div>
+        <div class="stat-card"><div class="stat-val" id="s-cats">0</div><div class="stat-lbl">分类</div></div>
+      </div>
+      <div class="sec-hd"><h2>最近笔记</h2></div>
+      <div class="card-list" id="home-list"></div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section" id="sec-notes">
+      <div class="cat-scroll" id="cat-scroll"></div>
+      <div class="card-list" id="notes-list"></div>
+    </div>
+
+    <!-- Flash -->
+    <div class="section" id="sec-flash">
+      <div class="sec-hd"><h2>闪卡复习</h2><button class="btn btn-sm" onclick="openFlashDrawer()">+ 新建</button></div>
+      <div id="flash-area"></div>
+    </div>
+
+    <!-- AI -->
+    <div class="section" id="sec-ai">
+      <p style="font-size:13px;color:var(--text2);margin-bottom:14px">基于你的笔记内容向 AI 提问</p>
+      <div class="ai-wrap">
+        <div class="ai-msgs" id="ai-msgs">
+          <div class="msg ai">你好！我是你的学习助手，可以根据你的笔记内容回答问题。</div>
+        </div>
+        <div class="ai-bar">
+          <input id="ai-input" placeholder="提问..." onkeydown="if(event.key==='Enter')sendAI()">
+          <button class="btn btn-primary" onclick="sendAI()">发送</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="switchTab('home',this)">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      <span class="nav-label">主页</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('notes',this)">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+      <span class="nav-label">笔记</span>
+      <span class="nav-badge" id="b-notes">0</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('flash',this)">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <span class="nav-label">闪卡</span>
+      <span class="nav-badge" id="b-flash">0</span>
+    </button>
+    <button class="nav-item" onclick="switchTab('ai',this)">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span class="nav-label">AI 问答</span>
+    </button>
+  </nav>
+
+  <button class="fab" id="fab" onclick="openNoteDrawer()" aria-label="新建笔记">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  </button>
 </div>
 
-<!-- App -->
-<div id="app" style="display:none">
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <h1>知识库</h1>
-      <p>个人学习空间</p>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-label">导航</div>
-      <button class="nav-item active" onclick="nav('home',this)">
-        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-        主页
-        <span class="nav-badge" id="b-total">0</span>
-      </button>
-      <button class="nav-item" onclick="nav('notes',this)">
-        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-        笔记
-        <span class="nav-badge" id="b-notes">0</span>
-      </button>
-      <button class="nav-item" onclick="nav('flash',this)">
-        <svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        闪卡复习
-        <span class="nav-badge" id="b-flash">0</span>
-      </button>
-      <button class="nav-item" onclick="nav('ai',this)">
-        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        AI 问答
-      </button>
-    </div>
-    <div class="sidebar-section" style="flex:1">
-      <div class="sidebar-label">分类</div>
-      <div class="cat-area" id="cat-list"></div>
-    </div>
-    <div style="padding:14px 16px;border-top:0.5px solid var(--border)">
-      <button class="btn btn-sm" style="width:100%;justify-content:center" onclick="exportData()">
-        <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        导出备份
-      </button>
-    </div>
-  </aside>
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
-  <div class="main">
-    <div class="topbar">
-      <div class="search-wrap">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search" placeholder="搜索笔记标题、内容、标签..." oninput="renderNotes()">
-      </div>
-      <button class="btn btn-primary" onclick="openNoteModal()">
-        <svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        新建笔记
-      </button>
-    </div>
-
-    <div class="content">
-
-      <!-- Home -->
-      <div class="section active" id="sec-home">
-        <div class="stats-row">
-          <div class="stat-card"><div class="stat-val" id="s-notes">0</div><div class="stat-lbl">笔记总数</div></div>
-          <div class="stat-card"><div class="stat-val" id="s-flash">0</div><div class="stat-lbl">闪卡数量</div></div>
-          <div class="stat-card"><div class="stat-val" id="s-cats">0</div><div class="stat-lbl">知识分类</div></div>
-        </div>
-        <div class="sec-header"><h2>最近笔记</h2></div>
-        <div class="card-grid" id="home-grid"></div>
-      </div>
-
-      <!-- Notes -->
-      <div class="section" id="sec-notes">
-        <div class="sec-header"><h2>全部笔记</h2><span id="note-count" style="font-size:13px;color:var(--text3)"></span></div>
-        <div class="card-grid" id="notes-grid"></div>
-      </div>
-
-      <!-- Flash -->
-      <div class="section" id="sec-flash">
-        <div class="sec-header">
-          <h2>闪卡复习</h2>
-          <button class="btn btn-sm" onclick="openFlashModal()">
-            <svg style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            新建闪卡
-          </button>
-        </div>
-        <div id="flash-area"></div>
-      </div>
-
-      <!-- AI -->
-      <div class="section" id="sec-ai">
-        <div class="sec-header"><h2>AI 问答</h2></div>
-        <p style="font-size:13px;color:var(--text2);margin-bottom:16px">AI 会基于你的笔记内容来回答问题，相当于一个了解你所有知识的私人助手。</p>
-        <div class="ai-wrap">
-          <div class="ai-messages" id="ai-msgs">
-            <div class="msg ai">你好！我是你的专属学习助手。你可以问我任何关于你笔记内容的问题，或者让我帮你总结、解释知识点。</div>
-          </div>
-          <div class="ai-bar">
-            <input id="ai-input" placeholder="提问..." onkeydown="if(event.key==='Enter')sendAI()">
-            <button class="btn btn-primary" onclick="sendAI()">发送</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<!-- Note drawer -->
+<div class="drawer-bg" id="note-drawer-bg" onclick="closeNoteDrawer()"></div>
+<div class="drawer" id="note-drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-header">
+    <h3 id="note-drawer-title">新建笔记</h3>
+    <button class="btn btn-sm" onclick="closeNoteDrawer()">取消</button>
   </div>
-</div>
+  <div class="drawer-body">
 
-<!-- Note modal -->
-<div class="overlay" id="note-modal">
-  <div class="modal">
-    <h3 id="modal-title">新建笔记</h3>
+    <!-- File upload zone -->
+    <div id="upload-section">
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.md,.jpg,.jpeg,.png,.gif,.webp,.bmp" onchange="handleFile(this.files[0])">
+        <div class="upload-icon">📎</div>
+        <div class="upload-title">上传文件自动提取内容</div>
+        <div class="upload-sub">点击选择文件，或拖拽到此处</div>
+        <div class="file-types">
+          <span class="file-type-badge">PDF</span>
+          <span class="file-type-badge">Word</span>
+          <span class="file-type-badge">Excel</span>
+          <span class="file-type-badge">图片</span>
+          <span class="file-type-badge">CSV</span>
+          <span class="file-type-badge">TXT</span>
+        </div>
+      </div>
+
+      <div class="file-preview" id="file-preview">
+        <div class="file-preview-icon" id="fp-icon">📄</div>
+        <div class="file-preview-info">
+          <div class="file-preview-name" id="fp-name"></div>
+          <div class="file-preview-size" id="fp-size"></div>
+        </div>
+        <div class="file-preview-remove" onclick="clearFile()">✕</div>
+      </div>
+
+      <div class="processing-box" id="processing-box">
+        <div class="processing-row">
+          <div class="spinner"></div>
+          <div class="processing-text" id="processing-text">正在解析文件...</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;margin:4px 0 14px;color:var(--text3);font-size:12px">
+      <div style="flex:1;height:0.5px;background:var(--border)"></div>
+      或者直接输入
+      <div style="flex:1;height:0.5px;background:var(--border)"></div>
+    </div>
+
     <div class="form-group"><label>标题</label><input id="n-title" placeholder="笔记标题"></div>
     <div class="form-group">
       <label>分类</label>
@@ -298,348 +333,472 @@ body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text
         <option value="其他">其他</option>
       </select>
     </div>
-    <div class="form-group"><label>内容</label><textarea id="n-body" placeholder="在此输入笔记内容..."></textarea></div>
+    <div class="form-group">
+      <label>内容</label>
+      <textarea id="n-body" placeholder="在此输入笔记内容，或上传文件自动填充..." style="min-height:140px"></textarea>
+    </div>
     <div class="form-group">
       <label>标签</label>
-      <input id="n-tags" placeholder="重要, 考点, 公式（用逗号分隔）">
-      <div class="form-hint">添加标签方便搜索</div>
+      <input id="n-tags" placeholder="重要, 考点（逗号分隔）">
     </div>
-    <div class="modal-footer">
-      <button class="btn" onclick="closeNoteModal()">取消</button>
-      <button class="btn btn-primary" onclick="saveNote()">保存</button>
-    </div>
+    <button class="btn btn-primary btn-block" onclick="saveNote()">保存笔记</button>
   </div>
 </div>
 
-<!-- View modal -->
-<div class="overlay" id="view-modal">
-  <div class="modal view-modal">
-    <div class="view-header">
-      <div class="view-title" id="v-title"></div>
-      <button class="btn btn-sm" onclick="closeViewModal()" style="flex-shrink:0">关闭</button>
-    </div>
-    <div id="v-cat" style="margin-bottom:10px"></div>
+<!-- View drawer -->
+<div class="drawer-bg" id="view-drawer-bg" onclick="closeViewDrawer()"></div>
+<div class="drawer" id="view-drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-header">
+    <h3>笔记详情</h3>
+    <button class="btn btn-sm" onclick="closeViewDrawer()">关闭</button>
+  </div>
+  <div class="drawer-body">
+    <div class="view-title" id="v-title"></div>
+    <div id="v-file-badge"></div>
+    <div id="v-cat"></div>
     <div class="view-body" id="v-body"></div>
-    <div id="v-tags" style="margin-bottom:16px;display:flex;gap:4px;flex-wrap:wrap"></div>
+    <div id="v-tags" style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px"></div>
     <div class="view-actions">
-      <button class="btn btn-sm" onclick="genFlash()" id="gen-fc-btn">✦ AI 生成闪卡</button>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-sm" onclick="editNote()">编辑</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteNote()">删除</button>
-      </div>
+      <button class="btn" onclick="editNote()">
+        <svg style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        编辑
+      </button>
+      <button class="btn" onclick="genFlash()">✦ 生成闪卡</button>
+      <button class="btn btn-danger" style="grid-column:1/-1" onclick="deleteNote()">删除笔记</button>
     </div>
   </div>
 </div>
 
-<!-- Flash modal -->
-<div class="overlay" id="flash-modal">
-  <div class="modal">
-    <h3>新建闪卡</h3>
+<!-- Flash drawer -->
+<div class="drawer-bg" id="flash-drawer-bg" onclick="closeFlashDrawer()"></div>
+<div class="drawer" id="flash-drawer">
+  <div class="drawer-handle"></div>
+  <div class="drawer-header"><h3>新建闪卡</h3><button class="btn btn-sm" onclick="closeFlashDrawer()">取消</button></div>
+  <div class="drawer-body">
     <div class="form-group"><label>问题（正面）</label><input id="fc-q" placeholder="填写问题"></div>
-    <div class="form-group"><label>答案（背面）</label><textarea id="fc-a" placeholder="填写答案" style="min-height:80px"></textarea></div>
-    <div class="modal-footer">
-      <button class="btn" onclick="closeFlashModal()">取消</button>
-      <button class="btn btn-primary" onclick="saveFlash()">保存</button>
-    </div>
+    <div class="form-group"><label>答案（背面）</label><textarea id="fc-a" placeholder="填写答案" style="min-height:90px"></textarea></div>
+    <button class="btn btn-primary btn-block" onclick="saveFlash()">保存闪卡</button>
   </div>
 </div>
+
+<!-- External libs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
-const PASSWORD = 'knowledge123';
+// PDF.js worker
+if(typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-const CAT_STYLE = {
-  '数学':{bg:'#e6f1fb',color:'#0c447c'},
-  '英语':{bg:'#e1f5ee',color:'#085041'},
-  '编程':{bg:'#eeedfe',color:'#3c3489'},
-  '历史':{bg:'#faeeda',color:'#633806'},
-  '科学':{bg:'#eaf3de',color:'#27500a'},
-  '语文':{bg:'#fbeaf0',color:'#72243e'},
-  '物理':{bg:'#faece7',color:'#712b13'},
-  '化学':{bg:'#f1efe8',color:'#444441'},
-  '其他':{bg:'#f1efe8',color:'#444441'},
+const CAT_STYLE={
+  '数学':{bg:'#e6f1fb',color:'#0c447c'},'英语':{bg:'#e1f5ee',color:'#085041'},
+  '编程':{bg:'#eeedfe',color:'#3c3489'},'历史':{bg:'#faeeda',color:'#633806'},
+  '科学':{bg:'#eaf3de',color:'#27500a'},'语文':{bg:'#fbeaf0',color:'#72243e'},
+  '物理':{bg:'#faece7',color:'#712b13'},'化学':{bg:'#f1efe8',color:'#5f5e5a'},
+  '其他':{bg:'#f1efe8',color:'#444441'}
 };
+const FILE_ICONS={'pdf':'📕','doc':'📘','docx':'📘','xls':'📗','xlsx':'📗','csv':'📊','txt':'📄','md':'📝','jpg':'🖼️','jpeg':'🖼️','png':'🖼️','gif':'🖼️','webp':'🖼️','bmp':'🖼️'};
+const FILE_COLORS={'pdf':'#faece7','doc':'#e6f1fb','docx':'#e6f1fb','xls':'#eaf3de','xlsx':'#eaf3de','csv':'#eaf3de','txt':'#f1efe8','md':'#eeedfe','jpg':'#fbeaf0','jpeg':'#fbeaf0','png':'#fbeaf0','gif':'#fbeaf0','webp':'#fbeaf0','bmp':'#fbeaf0'};
 
-function checkPw(){
-  const v = document.getElementById('pw-input').value;
-  if(v === PASSWORD){
-    document.getElementById('lock').classList.add('hidden');
-    document.getElementById('app').style.display = 'grid';
-    renderNotes(); updateStats(); renderFlash();
-  } else {
-    document.getElementById('pw-err').textContent = '密码错误，请重试';
-    document.getElementById('pw-input').value = '';
-  }
+function cs(cat){return CAT_STYLE[cat]||{bg:'#f1efe8',color:'#444441'};}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmtSize(b){return b<1024?b+'B':b<1048576?(b/1024).toFixed(1)+'KB':(b/1048576).toFixed(1)+'MB';}
+function fileExt(name){return (name.split('.').pop()||'').toLowerCase();}
+function fileIcon(name){return FILE_ICONS[fileExt(name)]||'📄';}
+function fileBg(name){return FILE_COLORS[fileExt(name)]||'#f1efe8';}
+
+let notes=JSON.parse(localStorage.getItem('kb_notes')||'[]');
+let flashcards=JSON.parse(localStorage.getItem('kb_flash')||'[]');
+let editingId=null,viewingId=null,fcIdx=0,currentCat='';
+let currentFile=null;
+
+function save(){
+  localStorage.setItem('kb_notes',JSON.stringify(notes));
+  localStorage.setItem('kb_flash',JSON.stringify(flashcards));
 }
 
-let notes = JSON.parse(localStorage.getItem('kb_notes')||'[]');
-let flashcards = JSON.parse(localStorage.getItem('kb_flash')||'[]');
-let editingId = null, viewingId = null, fcIdx = 0;
-
-function persist(){
-  localStorage.setItem('kb_notes', JSON.stringify(notes));
-  localStorage.setItem('kb_flash', JSON.stringify(flashcards));
+function showToast(msg,duration=2500){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),duration);
 }
 
-function nav(sec, el){
+// ── Tab / nav ──
+function switchTab(sec,el){
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-'+sec).classList.add('active');
+  document.getElementById('search-bar').style.display=sec==='notes'?'flex':'none';
+  document.getElementById('fab').style.display=(sec==='home'||sec==='notes')?'flex':'none';
   if(sec==='flash') renderFlash();
   renderNotes(); updateStats();
+  document.getElementById('content').scrollTop=0;
 }
 
-function catStyle(cat){ return CAT_STYLE[cat]||{bg:'#f1efe8',color:'#444441'}; }
-
+// ── Cards ──
 function makeCard(n){
-  const tags = (n.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
-  const cs = catStyle(n.cat);
-  const catBadge = n.cat ? `<span class="tag" style="background:${cs.bg};color:${cs.color}">${n.cat}</span>` : '';
-  const tagBadges = tags.map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
+  const c=cs(n.cat);
+  const ext=n.sourceFile?fileExt(n.sourceFile):'';
+  const iconBg=n.sourceFile?fileBg(n.sourceFile):'var(--bg3)';
+  const iconEmoji=n.sourceFile?fileIcon(n.sourceFile):'📝';
+  const catBadge=n.cat?`<span class="tag" style="background:${c.bg};color:${c.color}">${n.cat}</span>`:'';
+  const tags=(n.tags||'').split(',').map(t=>t.trim()).filter(Boolean).map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
+  const fileBadge=n.sourceFile?`<span class="tag" style="background:${iconBg};color:var(--text2)">${iconEmoji} ${ext.toUpperCase()}</span>`:'';
   return `<div class="note-card" onclick="viewNote('${n.id}')">
-    <h4>${escHtml(n.title)}</h4>
-    <p>${escHtml(n.body)}</p>
-    <div class="note-meta">${catBadge}${tagBadges}</div>
-    <div class="note-date">${n.created||''}</div>
+    <div class="note-card-top">
+      <div class="note-card-icon" style="background:${iconBg}">${iconEmoji}</div>
+      <h4>${esc(n.title)}</h4>
+    </div>
+    <p>${esc(n.body)}</p>
+    <div class="note-meta">${catBadge}${fileBadge}${tags}<span class="note-date">${n.created||''}</span></div>
   </div>`;
 }
 
-function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
 function renderNotes(){
-  const q = document.getElementById('search').value.toLowerCase();
-  const filtered = notes.filter(n=>
-    !q||(n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||'').toLowerCase().includes(q))
+  const q=(document.getElementById('search').value||'').toLowerCase();
+  const filtered=notes.filter(n=>
+    (!currentCat||n.cat===currentCat)&&
+    (!q||(n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||'').toLowerCase().includes(q)))
   ).slice().reverse();
-
-  const emptyHtml = `<div class="empty"><div class="empty-icon">📝</div><p>还没有笔记，点击右上角「新建笔记」开始吧</p></div>`;
-  const emptySearch = `<div class="empty"><div class="empty-icon">🔍</div><p>没有找到匹配的笔记</p></div>`;
-
-  const hg = document.getElementById('home-grid');
-  if(hg) hg.innerHTML = notes.length === 0 ? emptyHtml : filtered.slice(0,6).map(makeCard).join('');
-
-  const ng = document.getElementById('notes-grid');
-  if(ng) ng.innerHTML = filtered.length ? filtered.map(makeCard).join('') : (q ? emptySearch : emptyHtml);
-
-  const nc = document.getElementById('note-count');
-  if(nc) nc.textContent = `共 ${filtered.length} 条`;
-
-  document.getElementById('b-total').textContent = notes.length;
-  document.getElementById('b-notes').textContent = notes.length;
-  updateCats();
+  const empty=`<div class="empty"><div class="empty-icon">📝</div><p>还没有笔记<br>点击右下角 + 开始记录</p></div>`;
+  const hl=document.getElementById('home-list');
+  if(hl) hl.innerHTML=notes.length?notes.slice().reverse().slice(0,5).map(makeCard).join(''):empty;
+  const nl=document.getElementById('notes-list');
+  if(nl) nl.innerHTML=filtered.length?filtered.map(makeCard).join(''):empty;
+  updateCats(); updateStats();
 }
 
 function updateCats(){
-  const cats = [...new Set(notes.map(n=>n.cat).filter(Boolean))];
-  const cl = document.getElementById('cat-list');
-  cl.innerHTML = cats.map(c=>{
-    const cs = catStyle(c);
-    return `<button class="cat-chip" style="background:${cs.bg};color:${cs.color}" onclick="filterCat('${c}')">${c}</button>`;
-  }).join('');
+  const cats=[...new Set(notes.map(n=>n.cat).filter(Boolean))];
+  const sc=document.getElementById('cat-scroll');
+  if(!sc) return;
+  sc.innerHTML=`<button class="cat-chip all" onclick="filterCat('')">全部</button>`+
+    cats.map(c=>{const s=cs(c);return `<button class="cat-chip" style="background:${s.bg};color:${s.color}" onclick="filterCat('${c}')">${c}</button>`;}).join('');
 }
-
-function filterCat(cat){
-  document.getElementById('search').value = cat;
-  renderNotes();
-  document.querySelectorAll('.nav-item')[1].click();
-}
+function filterCat(cat){currentCat=cat;renderNotes();}
 
 function updateStats(){
-  const cats = new Set(notes.map(n=>n.cat).filter(Boolean));
-  document.getElementById('s-notes').textContent = notes.length;
-  document.getElementById('s-flash').textContent = flashcards.length;
-  document.getElementById('s-cats').textContent = cats.size;
-  document.getElementById('b-flash').textContent = flashcards.length;
+  const cats=new Set(notes.map(n=>n.cat).filter(Boolean));
+  document.getElementById('s-notes').textContent=notes.length;
+  document.getElementById('s-flash').textContent=flashcards.length;
+  document.getElementById('s-cats').textContent=cats.size;
+  const bn=document.getElementById('b-notes'); bn.textContent=notes.length; bn.style.display=notes.length?'block':'none';
+  const bf=document.getElementById('b-flash'); bf.textContent=flashcards.length; bf.style.display=flashcards.length?'block':'none';
+  document.getElementById('hdr-sub').textContent=notes.length?`共 ${notes.length} 条笔记`:'个人学习空间';
 }
 
-function openNoteModal(id){
-  editingId = id||null;
-  const n = id ? notes.find(x=>x.id===id) : null;
-  document.getElementById('modal-title').textContent = n ? '编辑笔记' : '新建笔记';
-  document.getElementById('n-title').value = n ? n.title : '';
-  document.getElementById('n-cat').value = n ? (n.cat||'') : '';
-  document.getElementById('n-body').value = n ? n.body : '';
-  document.getElementById('n-tags').value = n ? (n.tags||'') : '';
-  document.getElementById('note-modal').classList.add('open');
+// ── File parsing ──
+function setProcessing(show, text='正在解析文件...'){
+  const box=document.getElementById('processing-box');
+  box.classList.toggle('show',show);
+  if(text) document.getElementById('processing-text').textContent=text;
 }
-function closeNoteModal(){ document.getElementById('note-modal').classList.remove('open'); }
 
-function saveNote(){
-  const title = document.getElementById('n-title').value.trim();
-  const body = document.getElementById('n-body').value.trim();
-  if(!title||!body){ alert('请填写标题和内容'); return; }
-  const cat = document.getElementById('n-cat').value;
-  const tags = document.getElementById('n-tags').value.trim();
-  if(editingId){
-    const i = notes.findIndex(n=>n.id===editingId);
-    if(i>-1) notes[i]={...notes[i],title,body,cat,tags};
-  } else {
-    notes.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),title,body,cat,tags,created:new Date().toLocaleDateString('zh-CN')});
+function showFilePreview(file){
+  const fp=document.getElementById('file-preview');
+  fp.classList.add('show');
+  document.getElementById('fp-icon').textContent=fileIcon(file.name);
+  document.getElementById('fp-name').textContent=file.name;
+  document.getElementById('fp-size').textContent=fmtSize(file.size);
+  document.getElementById('upload-zone').style.display='none';
+}
+
+function clearFile(){
+  currentFile=null;
+  document.getElementById('file-preview').classList.remove('show');
+  document.getElementById('upload-zone').style.display='';
+  document.getElementById('file-input').value='';
+  setProcessing(false);
+}
+
+async function handleFile(file){
+  if(!file) return;
+  currentFile=file;
+  showFilePreview(file);
+  const ext=fileExt(file.name);
+  const titleInput=document.getElementById('n-title');
+  const bodyInput=document.getElementById('n-body');
+
+  // pre-fill title from filename
+  if(!titleInput.value){
+    titleInput.value=file.name.replace(/\.[^.]+$/,'');
   }
-  persist(); closeNoteModal(); renderNotes(); updateStats();
+
+  setProcessing(true,'正在解析文件...');
+  try {
+    let text='';
+
+    if(ext==='pdf'){
+      text=await parsePDF(file);
+    } else if(ext==='docx'||ext==='doc'){
+      text=await parseDocx(file);
+    } else if(ext==='xlsx'||ext==='xls'){
+      text=await parseExcel(file);
+    } else if(ext==='csv'){
+      text=await parseCSV(file);
+    } else if(ext==='txt'||ext==='md'){
+      text=await parsePlainText(file);
+    } else if(['jpg','jpeg','png','gif','webp','bmp'].includes(ext)){
+      setProcessing(true,'正在用 AI 识别图片内容...');
+      text=await parseImage(file);
+    } else {
+      showToast('不支持此文件格式');
+      setProcessing(false);
+      return;
+    }
+
+    if(text && text.trim()){
+      bodyInput.value=text.trim().slice(0,8000); // limit to 8000 chars
+      showToast('文件内容已提取 ✓');
+    } else {
+      showToast('未能提取到文本内容，请手动输入');
+    }
+  } catch(e){
+    console.error(e);
+    showToast('解析失败：'+e.message);
+  }
+  setProcessing(false);
+}
+
+async function parsePDF(file){
+  if(typeof pdfjsLib==='undefined') throw new Error('PDF解析库未加载');
+  const ab=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+  let text='';
+  const maxPages=Math.min(pdf.numPages, 50);
+  setProcessing(true,`正在解析 PDF（共${pdf.numPages}页）...`);
+  for(let i=1;i<=maxPages;i++){
+    const page=await pdf.getPage(i);
+    const content=await page.getTextContent();
+    const pageText=content.items.map(item=>item.str).join(' ');
+    text+=pageText+'\n';
+  }
+  if(pdf.numPages>50) text+=`\n[已截取前50页，共${pdf.numPages}页]`;
+  return text;
+}
+
+async function parseDocx(file){
+  if(typeof mammoth==='undefined') throw new Error('Word解析库未加载');
+  const ab=await file.arrayBuffer();
+  const result=await mammoth.extractRawText({arrayBuffer:ab});
+  return result.value;
+}
+
+async function parseExcel(file){
+  if(typeof XLSX==='undefined') throw new Error('Excel解析库未加载');
+  const ab=await file.arrayBuffer();
+  const wb=XLSX.read(ab,{type:'array'});
+  let text='';
+  wb.SheetNames.forEach(name=>{
+    const ws=wb.Sheets[name];
+    const csv=XLSX.utils.sheet_to_csv(ws);
+    text+=`【${name}】\n${csv}\n\n`;
+  });
+  return text;
+}
+
+async function parseCSV(file){
+  const text=await file.text();
+  return text;
+}
+
+async function parsePlainText(file){
+  return await file.text();
+}
+
+async function parseImage(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=async(e)=>{
+      const base64=e.target.result.split(',')[1];
+      const mediaType=file.type||'image/jpeg';
+      try{
+        const resp=await fetch('https://api.anthropic.com/v1/messages',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            model:'claude-sonnet-4-20250514',
+            max_tokens:2000,
+            messages:[{role:'user',content:[
+              {type:'image',source:{type:'base64',media_type:mediaType,data:base64}},
+              {type:'text',text:'请提取并整理这张图片中的所有文字内容。如果是手写笔记，请尽量识别。如果是图表或图片，请描述其主要内容。用中文输出，保持原有结构。'}
+            ]}]
+          })
+        });
+        const data=await resp.json();
+        resolve(data.content.map(i=>i.text||'').join(''));
+      }catch(err){reject(err);}
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Drag & drop
+const uz=document.getElementById('upload-zone');
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('dragover');});
+uz.addEventListener('dragleave',()=>uz.classList.remove('dragover'));
+uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('dragover');const f=e.dataTransfer.files[0];if(f)handleFile(f);});
+
+// ── Note CRUD ──
+function openNoteDrawer(id){
+  editingId=id||null;
+  const n=id?notes.find(x=>x.id===id):null;
+  document.getElementById('note-drawer-title').textContent=n?'编辑笔记':'新建笔记';
+  document.getElementById('n-title').value=n?n.title:'';
+  document.getElementById('n-cat').value=n?(n.cat||''):'';
+  document.getElementById('n-body').value=n?n.body:'';
+  document.getElementById('n-tags').value=n?(n.tags||''):'';
+  clearFile();
+  document.getElementById('note-drawer-bg').classList.add('open');
+  setTimeout(()=>document.getElementById('note-drawer').classList.add('open'),10);
+}
+function closeNoteDrawer(){
+  document.getElementById('note-drawer').classList.remove('open');
+  document.getElementById('note-drawer-bg').classList.remove('open');
+}
+function saveNote(){
+  const title=document.getElementById('n-title').value.trim();
+  const body=document.getElementById('n-body').value.trim();
+  if(!title||!body){showToast('请填写标题和内容');return;}
+  const cat=document.getElementById('n-cat').value;
+  const tags=document.getElementById('n-tags').value.trim();
+  const sourceFile=currentFile?currentFile.name:null;
+  if(editingId){
+    const i=notes.findIndex(n=>n.id===editingId);
+    if(i>-1) notes[i]={...notes[i],title,body,cat,tags,sourceFile:sourceFile||notes[i].sourceFile};
+  } else {
+    notes.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),title,body,cat,tags,sourceFile,created:new Date().toLocaleDateString('zh-CN')});
+  }
+  save(); closeNoteDrawer(); renderNotes(); showToast('已保存 ✓');
 }
 
 function viewNote(id){
-  viewingId = id;
-  const n = notes.find(x=>x.id===id); if(!n) return;
-  document.getElementById('v-title').textContent = n.title;
-  const cs = catStyle(n.cat);
-  document.getElementById('v-cat').innerHTML = n.cat ? `<span class="tag" style="background:${cs.bg};color:${cs.color}">${n.cat}</span>` : '';
-  document.getElementById('v-body').textContent = n.body;
-  const tags = (n.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
-  document.getElementById('v-tags').innerHTML = tags.map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
-  document.getElementById('view-modal').classList.add('open');
+  viewingId=id;
+  const n=notes.find(x=>x.id===id); if(!n) return;
+  document.getElementById('v-title').textContent=n.title;
+  const c=cs(n.cat);
+  document.getElementById('v-cat').innerHTML=n.cat?`<span class="tag" style="background:${c.bg};color:${c.color};margin-bottom:8px;display:inline-block">${n.cat}</span>`:'';
+  const fb=document.getElementById('v-file-badge');
+  fb.innerHTML=n.sourceFile?`<span class="view-file-badge">${fileIcon(n.sourceFile)} 来源：${n.sourceFile}</span>`:'';
+  document.getElementById('v-body').textContent=n.body;
+  const tags=(n.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+  document.getElementById('v-tags').innerHTML=tags.map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
+  document.getElementById('view-drawer-bg').classList.add('open');
+  setTimeout(()=>document.getElementById('view-drawer').classList.add('open'),10);
 }
-function closeViewModal(){ document.getElementById('view-modal').classList.remove('open'); }
-function editNote(){ closeViewModal(); openNoteModal(viewingId); }
+function closeViewDrawer(){
+  document.getElementById('view-drawer').classList.remove('open');
+  document.getElementById('view-drawer-bg').classList.remove('open');
+}
+function editNote(){closeViewDrawer();setTimeout(()=>openNoteDrawer(viewingId),200);}
 function deleteNote(){
-  if(!confirm('确定删除这条笔记？')) return;
-  notes = notes.filter(n=>n.id!==viewingId);
-  persist(); closeViewModal(); renderNotes(); updateStats();
+  if(!confirm('确定删除这条笔记？'))return;
+  notes=notes.filter(n=>n.id!==viewingId);
+  save();closeViewDrawer();renderNotes();showToast('已删除');
 }
 
+// ── Flashcards ──
 function renderFlash(){
-  const area = document.getElementById('flash-area');
+  const area=document.getElementById('flash-area');
   if(!flashcards.length){
-    area.innerHTML = `<div class="empty"><div class="empty-icon">🃏</div><p>还没有闪卡。手动新建，或在笔记详情页点击「AI 生成闪卡」自动创建。</p></div>`;
+    area.innerHTML=`<div class="empty"><div class="empty-icon">🃏</div><p>还没有闪卡<br>手动新建，或在笔记里用 AI 自动生成</p></div>`;
     return;
   }
-  fcIdx = Math.min(fcIdx, flashcards.length-1);
-  const fc = flashcards[fcIdx];
-  area.innerHTML = `
-    <div class="fc-wrap">
-      <div class="fc-progress">${fcIdx+1} / ${flashcards.length}</div>
-      <div class="fc-card" id="fc-card" onclick="revealFlash()">
-        <div class="fc-label" id="fc-side">问题</div>
-        <div class="fc-q">${escHtml(fc.q)}</div>
-        <div class="fc-a">${escHtml(fc.a)}</div>
-      </div>
-      <div class="fc-hint">点击卡片显示答案</div>
-      <div class="fc-nav">
-        <button class="btn btn-sm" onclick="prevFlash()">← 上一张</button>
-        <button class="btn btn-sm btn-danger" onclick="delFlash()">删除</button>
-        <button class="btn btn-sm" onclick="nextFlash()">下一张 →</button>
-      </div>
-    </div>`;
+  fcIdx=Math.min(fcIdx,flashcards.length-1);
+  const fc=flashcards[fcIdx];
+  area.innerHTML=`<div class="fc-area">
+    <div class="fc-prog">${fcIdx+1} / ${flashcards.length}</div>
+    <div class="fc-card" id="fc-card" onclick="revealFlash()">
+      <div class="fc-side" id="fc-side">问题</div>
+      <div class="fc-q">${esc(fc.q)}</div>
+      <div class="fc-a">${esc(fc.a)}</div>
+    </div>
+    <div class="fc-hint">点击卡片显示答案</div>
+    <div class="fc-nav">
+      <button class="btn" onclick="prevFlash()">← 上一张</button>
+      <button class="btn" onclick="nextFlash()">下一张 →</button>
+    </div>
+    <button class="btn btn-danger btn-block" onclick="delFlash()">删除这张</button>
+  </div>`;
 }
-
 function revealFlash(){
-  const card = document.getElementById('fc-card');
+  const card=document.getElementById('fc-card');
   card.classList.toggle('revealed');
-  document.getElementById('fc-side').textContent = card.classList.contains('revealed') ? '答案' : '问题';
+  document.getElementById('fc-side').textContent=card.classList.contains('revealed')?'答案':'问题';
 }
-function prevFlash(){ fcIdx=(fcIdx-1+flashcards.length)%flashcards.length; renderFlash(); }
-function nextFlash(){ fcIdx=(fcIdx+1)%flashcards.length; renderFlash(); }
-function delFlash(){
-  if(!confirm('删除这张闪卡？')) return;
-  flashcards.splice(fcIdx,1); fcIdx=Math.max(0,fcIdx-1); persist(); updateStats(); renderFlash();
-}
-
-function openFlashModal(){ document.getElementById('fc-q').value=''; document.getElementById('fc-a').value=''; document.getElementById('flash-modal').classList.add('open'); }
-function closeFlashModal(){ document.getElementById('flash-modal').classList.remove('open'); }
+function prevFlash(){fcIdx=(fcIdx-1+flashcards.length)%flashcards.length;renderFlash();}
+function nextFlash(){fcIdx=(fcIdx+1)%flashcards.length;renderFlash();}
+function delFlash(){if(!confirm('删除这张？'))return;flashcards.splice(fcIdx,1);fcIdx=Math.max(0,fcIdx-1);save();updateStats();renderFlash();}
+function openFlashDrawer(){document.getElementById('fc-q').value='';document.getElementById('fc-a').value='';document.getElementById('flash-drawer-bg').classList.add('open');setTimeout(()=>document.getElementById('flash-drawer').classList.add('open'),10);}
+function closeFlashDrawer(){document.getElementById('flash-drawer').classList.remove('open');document.getElementById('flash-drawer-bg').classList.remove('open');}
 function saveFlash(){
   const q=document.getElementById('fc-q').value.trim();
   const a=document.getElementById('fc-a').value.trim();
-  if(!q||!a){ alert('请填写问题和答案'); return; }
+  if(!q||!a){showToast('请填写问题和答案');return;}
   flashcards.push({id:Date.now().toString(36),q,a});
-  persist(); updateStats(); closeFlashModal(); renderFlash();
+  save();updateStats();closeFlashDrawer();renderFlash();showToast('已保存 ✓');
 }
 
 async function genFlash(){
-  const n = notes.find(x=>x.id===viewingId); if(!n) return;
-  const btn = document.getElementById('gen-fc-btn');
-  btn.textContent = '生成中...'; btn.disabled = true;
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:`请根据以下笔记，生成3-5张闪卡（问答对）。
-笔记标题：${n.title}
-笔记内容：${n.body}
-
-只返回JSON数组，不要其他任何文字和代码块标记：
-[{"q":"问题","a":"答案"}]`}]
-      })
-    });
-    const data = await resp.json();
-    const text = data.content.map(i=>i.text||'').join('');
-    const clean = text.replace(/```json|```/g,'').trim();
-    const cards = JSON.parse(clean);
+  const n=notes.find(x=>x.id===viewingId);if(!n)return;
+  closeViewDrawer();
+  document.querySelectorAll('.nav-item')[2].click();
+  document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⏳</div><p>AI 正在分析笔记生成闪卡...</p></div>`;
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:`请根据以下笔记生成3-5张闪卡。只返回JSON数组，不含其他文字：\n[{"q":"问题","a":"答案"}]\n\n标题：${n.title}\n内容：${n.body.slice(0,3000)}`}]})});
+    const data=await resp.json();
+    const text=data.content.map(i=>i.text||'').join('');
+    const cards=JSON.parse(text.replace(/```json|```/g,'').trim());
     cards.forEach(c=>flashcards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),q:c.q,a:c.a}));
-    persist(); updateStats();
-    closeViewModal();
-    document.querySelectorAll('.nav-item')[2].click();
-    alert(`已生成 ${cards.length} 张闪卡！`);
-  } catch(e){
-    alert('生成失败，请检查网络连接后重试，或手动创建闪卡。');
+    save();updateStats();renderFlash();showToast(`已生成 ${cards.length} 张闪卡 ✓`);
+  }catch(e){
+    document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><p>生成失败，请手动创建闪卡</p></div>`;
   }
-  btn.textContent = '✦ AI 生成闪卡'; btn.disabled = false;
 }
 
+// ── AI chat ──
 async function sendAI(){
-  const input = document.getElementById('ai-input');
-  const q = input.value.trim(); if(!q) return;
-  input.value = '';
-  const msgs = document.getElementById('ai-msgs');
-  msgs.innerHTML += `<div class="msg user">${escHtml(q)}</div>`;
-  const lid = 'l'+Date.now();
-  msgs.innerHTML += `<div class="msg ai loading" id="${lid}">思考中...</div>`;
-  msgs.scrollTop = msgs.scrollHeight;
-
-  const ctx = notes.slice(-12).map(n=>`[${n.cat||'未分类'}] ${n.title}: ${n.body}`).join('\n');
-  const sys = ctx ? `你是用户的私人学习助手。以下是用户的笔记内容，请优先基于这些内容回答问题：\n\n${ctx}\n\n如果问题超出笔记范围，可以用通用知识补充。请用简洁清晰的中文回答。` : '你是用户的私人学习助手，请用简洁清晰的中文回答问题。';
-
-  try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system:sys,
-        messages:[{role:'user',content:q}]
-      })
-    });
-    const data = await resp.json();
-    const answer = data.content.map(i=>i.text||'').join('');
-    document.getElementById(lid).textContent = answer;
+  const input=document.getElementById('ai-input');
+  const q=input.value.trim();if(!q)return;
+  input.value='';
+  const msgs=document.getElementById('ai-msgs');
+  msgs.innerHTML+=`<div class="msg user">${esc(q)}</div>`;
+  const lid='l'+Date.now();
+  msgs.innerHTML+=`<div class="msg ai loading" id="${lid}">思考中...</div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  const ctx=notes.slice(-10).map(n=>`[${n.cat||'未分类'}] ${n.title}: ${n.body.slice(0,500)}`).join('\n');
+  const sys=ctx?`你是用户的私人学习助手。用户的笔记如下：\n\n${ctx}`:'你是用户的私人学习助手。';
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:q}]})});
+    const data=await resp.json();
+    document.getElementById(lid).textContent=data.content.map(i=>i.text||'').join('');
     document.getElementById(lid).classList.remove('loading');
-  } catch(e){
-    document.getElementById(lid).textContent = '抱歉，AI 暂时无法连接，请检查网络后重试。';
+  }catch(e){
+    document.getElementById(lid).textContent='AI 暂时无法连接，请稍后重试。';
   }
-  msgs.scrollTop = msgs.scrollHeight;
+  msgs.scrollTop=msgs.scrollHeight;
 }
 
+// ── Export ──
 function exportData(){
-  const data = {notes, flashcards, exported: new Date().toISOString()};
-  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `知识库备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')}.json`;
+  const blob=new Blob([JSON.stringify({notes,flashcards,exported:new Date().toISOString()},null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`知识库备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')}.json`;
   a.click();
+  showToast('备份已下载 ✓');
 }
 
-document.querySelectorAll('.overlay').forEach(o=>{
-  o.addEventListener('click', e=>{ if(e.target===o) o.classList.remove('open'); });
-});
-document.getElementById('pw-input').addEventListener('keydown', e=>{ if(e.key==='Enter') checkPw(); });
-</script>
-
-<script>
+// ── Service Worker ──
 if('serviceWorker' in navigator){
-  const swCode = `
-const CACHE='kb-v2';
-const ASSETS=['/'];
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).then(r=>{const cl=r.clone();caches.open(CACHE).then(c=>c.put(e.request,cl));return r;}).catch(()=>caches.match('/'))));}); `;
-  const blob=new Blob([swCode],{type:'application/javascript'});
-  const url=URL.createObjectURL(blob);
-  navigator.serviceWorker.register(url).catch(()=>{});
+  const sw=`const C='kb-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).catch(()=>caches.match('/'))));});`;
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
 }
+
+renderNotes(); updateStats();
 </script>
 </body>
 </html>

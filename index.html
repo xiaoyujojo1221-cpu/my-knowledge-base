@@ -423,7 +423,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 if(typeof pdfjsLib!=='undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 // ── Supabase config ──
-let SB_URL='https://rvssjezchxphpkrgdkhc.supabase.co', SB_KEY='sb_publishable_DvpeFMaEu3Fz9yvywBIZeQ_RnEWSeI-', useCloud=true;
+let SB_URL='https://rvssjezchxphpkrgdkhc.supabase.co', SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ2c3NqZXpjaHhwaHBrcmdka2hjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxODIyNTUsImV4cCI6MjA5NTc1ODI1NX0.uWSmk6TZ3zV7BTL02XTRZNHK2nqCAoQnd2HBQGf3rAg', useCloud=true;
 
 function sbFetch(path, opts={}){
   return fetch(SB_URL+'/rest/v1/'+path, {

@@ -29,6 +29,32 @@ html,body{height:100%;overflow:hidden;background:var(--bg)}
 body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line-height:1.6;overscroll-behavior:none}
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
+/* Setup screen */
+#setup-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px}
+#setup-screen.hidden{display:none}
+.setup-card{background:var(--bg2);border:0.5px solid var(--border2);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:420px}
+.setup-card h2{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:500;margin-bottom:6px}
+.setup-card p{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.7}
+.setup-steps{margin-bottom:20px}
+.setup-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#f7f5f0;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-text{font-size:13px;color:var(--text2);line-height:1.6;flex:1}
+.step-text strong{color:var(--text);font-weight:500}
+.setup-input-group{margin-bottom:12px}
+.setup-input-group label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
+.setup-input-group input{width:100%;padding:10px 13px;border:0.5px solid var(--border2);border-radius:var(--radius-sm);font-size:14px;font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);outline:none}
+.setup-input-group input:focus{border-color:var(--accent2)}
+.setup-hint{font-size:11px;color:var(--text3);margin-top:4px}
+.setup-err{font-size:12px;color:var(--danger);margin-top:8px;min-height:18px}
+
+/* Sync status bar */
+.sync-bar{display:flex;align-items:center;gap:6px;padding:5px 16px;font-size:11px;background:var(--bg3);border-bottom:0.5px solid var(--border);flex-shrink:0;color:var(--text3)}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--text3);flex-shrink:0}
+.sync-dot.ok{background:#1D9E75}
+.sync-dot.err{background:var(--danger)}
+.sync-dot.syncing{background:#EF9F27;animation:pulse-dot 1s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+
 /* Header */
 .header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--bg2);border-bottom:0.5px solid var(--border);flex-shrink:0;padding-top:max(12px,env(safe-area-inset-top))}
 .header-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:500}
@@ -62,11 +88,10 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 .stat-val{font-family:'Noto Serif SC',serif;font-size:26px;font-weight:500}
 .stat-lbl{font-size:11px;color:var(--text3);margin-top:4px}
 
-/* Section header */
 .sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sec-hd h2{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:500}
 
-/* Note cards */
+/* Cards */
 .card-list{display:flex;flex-direction:column;gap:10px}
 .note-card{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer}
 .note-card:active{opacity:.75}
@@ -85,7 +110,6 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 .btn-sm{padding:7px 14px;font-size:13px}
 .btn-block{width:100%;margin-top:10px}
 .btn-danger{color:var(--danger);border-color:rgba(192,57,43,.25)}
-.btn-success{background:var(--success);border-color:var(--success);color:#fff}
 
 /* FAB */
 .fab{position:fixed;right:20px;bottom:calc(var(--bottom-bar) + var(--safe-bottom) + 16px);width:54px;height:54px;border-radius:50%;background:var(--accent);color:#f7f5f0;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.2);z-index:50}
@@ -141,8 +165,8 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 .form-group textarea{resize:none;line-height:1.7}
 .form-hint{font-size:11px;color:var(--text3);margin-top:4px}
 
-/* ── File upload area ── */
-.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--radius);padding:20px 16px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg);margin-bottom:14px;position:relative}
+/* File upload */
+.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--radius);padding:20px 16px;text-align:center;cursor:pointer;background:var(--bg);margin-bottom:14px;position:relative}
 .upload-zone.dragover{border-color:var(--accent);background:rgba(61,53,48,.05)}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .upload-icon{font-size:28px;margin-bottom:8px}
@@ -150,12 +174,10 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 .upload-sub{font-size:12px;color:var(--text3)}
 .file-types{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
 .file-type-badge{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg3);color:var(--text2);font-weight:500}
-
-/* Processing state */
-.processing-box{background:var(--bg3);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px;display:none}
+.processing-box{background:var(--bg3);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:14px;display:none}
 .processing-box.show{display:block}
 .processing-row{display:flex;align-items:center;gap:10px}
-.spinner{width:18px;height:18px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+.spinner{width:16px;height:16px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 .processing-text{font-size:13px;color:var(--text2)}
 .file-preview{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:14px;display:none}
@@ -169,7 +191,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 /* View drawer */
 .view-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:500;line-height:1.4;margin-bottom:10px}
 .view-body{font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap;padding:14px;background:var(--bg);border-radius:var(--radius-sm);margin:12px 0;max-height:40vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.view-file-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);margin-bottom:10px}
+.view-file-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:20px;background:var(--bg3);color:var(--text2);margin-bottom:8px}
 .view-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 
 /* Toast */
@@ -182,6 +204,51 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 </head>
 <body>
 <div id="app">
+
+  <!-- Setup screen -->
+  <div id="setup-screen">
+    <div class="setup-card">
+      <h2>连接云端数据库</h2>
+      <p>填入 Supabase 连接信息后，你的笔记将永久保存在云端，换手机也不会丢失。</p>
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="step-num">1</div>
+          <div class="step-text">打开 <strong>supabase.com</strong>，进入你的项目</div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">2</div>
+          <div class="step-text">左侧菜单点 <strong>Project Settings → API</strong></div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">3</div>
+          <div class="step-text">复制 <strong>Project URL</strong> 和 <strong>anon public</strong> key 填入下方</div>
+        </div>
+      </div>
+      <div class="setup-input-group">
+        <label>Project URL</label>
+        <input id="sb-url" placeholder="https://xxxxxxxxxxxx.supabase.co" type="url">
+        <div class="setup-hint">格式：https://你的项目ID.supabase.co</div>
+      </div>
+      <div class="setup-input-group">
+        <label>Anon Public Key</label>
+        <input id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." type="text">
+        <div class="setup-hint">在 API 页面的「Project API keys」部分找到</div>
+      </div>
+      <div class="setup-err" id="setup-err"></div>
+      <button class="btn btn-primary btn-block" onclick="connectSupabase()" id="connect-btn">连接并初始化数据库</button>
+      <div style="text-align:center;margin-top:14px">
+        <button class="btn btn-sm" onclick="skipSetup()" style="color:var(--text3);border-color:transparent;font-size:12px">跳过，先本地使用</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sync status -->
+  <div class="sync-bar" id="sync-bar" style="display:none">
+    <div class="sync-dot" id="sync-dot"></div>
+    <span id="sync-text">同步中...</span>
+    <span style="margin-left:auto;cursor:pointer;color:var(--text3)" onclick="openSettings()">⚙ 设置</span>
+  </div>
+
   <div class="header">
     <div>
       <div class="header-title">我的知识库</div>
@@ -200,7 +267,6 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
   </div>
 
   <div class="content" id="content">
-    <!-- Home -->
     <div class="section active" id="sec-home">
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-val" id="s-notes">0</div><div class="stat-lbl">笔记</div></div>
@@ -211,19 +277,16 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
       <div class="card-list" id="home-list"></div>
     </div>
 
-    <!-- Notes -->
     <div class="section" id="sec-notes">
       <div class="cat-scroll" id="cat-scroll"></div>
       <div class="card-list" id="notes-list"></div>
     </div>
 
-    <!-- Flash -->
     <div class="section" id="sec-flash">
       <div class="sec-hd"><h2>闪卡复习</h2><button class="btn btn-sm" onclick="openFlashDrawer()">+ 新建</button></div>
       <div id="flash-area"></div>
     </div>
 
-    <!-- AI -->
     <div class="section" id="sec-ai">
       <p style="font-size:13px;color:var(--text2);margin-bottom:14px">基于你的笔记内容向 AI 提问</p>
       <div class="ai-wrap">
@@ -264,7 +327,6 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
   </button>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <!-- Note drawer -->
@@ -276,71 +338,48 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
     <button class="btn btn-sm" onclick="closeNoteDrawer()">取消</button>
   </div>
   <div class="drawer-body">
-
-    <!-- File upload zone -->
-    <div id="upload-section">
-      <div class="upload-zone" id="upload-zone">
-        <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.md,.jpg,.jpeg,.png,.gif,.webp,.bmp" onchange="handleFile(this.files[0])">
-        <div class="upload-icon">📎</div>
-        <div class="upload-title">上传文件自动提取内容</div>
-        <div class="upload-sub">点击选择文件，或拖拽到此处</div>
-        <div class="file-types">
-          <span class="file-type-badge">PDF</span>
-          <span class="file-type-badge">Word</span>
-          <span class="file-type-badge">Excel</span>
-          <span class="file-type-badge">图片</span>
-          <span class="file-type-badge">CSV</span>
-          <span class="file-type-badge">TXT</span>
-        </div>
-      </div>
-
-      <div class="file-preview" id="file-preview">
-        <div class="file-preview-icon" id="fp-icon">📄</div>
-        <div class="file-preview-info">
-          <div class="file-preview-name" id="fp-name"></div>
-          <div class="file-preview-size" id="fp-size"></div>
-        </div>
-        <div class="file-preview-remove" onclick="clearFile()">✕</div>
-      </div>
-
-      <div class="processing-box" id="processing-box">
-        <div class="processing-row">
-          <div class="spinner"></div>
-          <div class="processing-text" id="processing-text">正在解析文件...</div>
-        </div>
+    <div class="upload-zone" id="upload-zone">
+      <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.md,.jpg,.jpeg,.png,.gif,.webp,.bmp" onchange="handleFile(this.files[0])">
+      <div class="upload-icon">📎</div>
+      <div class="upload-title">上传文件自动提取内容</div>
+      <div class="upload-sub">点击选择，或拖拽文件到此处</div>
+      <div class="file-types">
+        <span class="file-type-badge">PDF</span><span class="file-type-badge">Word</span>
+        <span class="file-type-badge">Excel</span><span class="file-type-badge">图片</span>
+        <span class="file-type-badge">CSV</span><span class="file-type-badge">TXT</span>
       </div>
     </div>
-
+    <div class="file-preview" id="file-preview">
+      <div class="file-preview-icon" id="fp-icon">📄</div>
+      <div class="file-preview-info">
+        <div class="file-preview-name" id="fp-name"></div>
+        <div class="file-preview-size" id="fp-size"></div>
+      </div>
+      <div class="file-preview-remove" onclick="clearFile()">✕</div>
+    </div>
+    <div class="processing-box" id="processing-box">
+      <div class="processing-row">
+        <div class="spinner"></div>
+        <div class="processing-text" id="processing-text">正在解析文件...</div>
+      </div>
+    </div>
     <div style="display:flex;align-items:center;gap:10px;margin:4px 0 14px;color:var(--text3);font-size:12px">
-      <div style="flex:1;height:0.5px;background:var(--border)"></div>
-      或者直接输入
-      <div style="flex:1;height:0.5px;background:var(--border)"></div>
+      <div style="flex:1;height:0.5px;background:var(--border)"></div>或者直接输入<div style="flex:1;height:0.5px;background:var(--border)"></div>
     </div>
-
     <div class="form-group"><label>标题</label><input id="n-title" placeholder="笔记标题"></div>
     <div class="form-group">
       <label>分类</label>
       <select id="n-cat">
         <option value="">选择分类...</option>
-        <option value="数学">数学</option>
-        <option value="英语">英语</option>
-        <option value="编程">编程</option>
-        <option value="历史">历史</option>
-        <option value="科学">科学</option>
-        <option value="语文">语文</option>
-        <option value="物理">物理</option>
-        <option value="化学">化学</option>
+        <option value="数学">数学</option><option value="英语">英语</option>
+        <option value="编程">编程</option><option value="历史">历史</option>
+        <option value="科学">科学</option><option value="语文">语文</option>
+        <option value="物理">物理</option><option value="化学">化学</option>
         <option value="其他">其他</option>
       </select>
     </div>
-    <div class="form-group">
-      <label>内容</label>
-      <textarea id="n-body" placeholder="在此输入笔记内容，或上传文件自动填充..." style="min-height:140px"></textarea>
-    </div>
-    <div class="form-group">
-      <label>标签</label>
-      <input id="n-tags" placeholder="重要, 考点（逗号分隔）">
-    </div>
+    <div class="form-group"><label>内容</label><textarea id="n-body" placeholder="在此输入内容，或上传文件自动填充..." style="min-height:130px"></textarea></div>
+    <div class="form-group"><label>标签</label><input id="n-tags" placeholder="重要, 考点（逗号分隔）"></div>
     <button class="btn btn-primary btn-block" onclick="saveNote()">保存笔记</button>
   </div>
 </div>
@@ -349,10 +388,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
 <div class="drawer-bg" id="view-drawer-bg" onclick="closeViewDrawer()"></div>
 <div class="drawer" id="view-drawer">
   <div class="drawer-handle"></div>
-  <div class="drawer-header">
-    <h3>笔记详情</h3>
-    <button class="btn btn-sm" onclick="closeViewDrawer()">关闭</button>
-  </div>
+  <div class="drawer-header"><h3>笔记详情</h3><button class="btn btn-sm" onclick="closeViewDrawer()">关闭</button></div>
   <div class="drawer-body">
     <div class="view-title" id="v-title"></div>
     <div id="v-file-badge"></div>
@@ -360,10 +396,7 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
     <div class="view-body" id="v-body"></div>
     <div id="v-tags" style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px"></div>
     <div class="view-actions">
-      <button class="btn" onclick="editNote()">
-        <svg style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        编辑
-      </button>
+      <button class="btn" onclick="editNote()">编辑</button>
       <button class="btn" onclick="genFlash()">✦ 生成闪卡</button>
       <button class="btn btn-danger" style="grid-column:1/-1" onclick="deleteNote()">删除笔记</button>
     </div>
@@ -382,14 +415,168 @@ body{font-family:'Noto Sans SC',sans-serif;color:var(--text);font-size:15px;line
   </div>
 </div>
 
-<!-- External libs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
-// PDF.js worker
-if(typeof pdfjsLib !== 'undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+if(typeof pdfjsLib!=='undefined') pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// ── Supabase config ──
+let SB_URL='https://rvssjezchxphpkrgdkhc.supabase.co', SB_KEY='sb_publishable_DvpeFMaEu3Fz9yvywBIZeQ_RnEWSeI-', useCloud=true;
+
+function sbFetch(path, opts={}){
+  return fetch(SB_URL+'/rest/v1/'+path, {
+    ...opts,
+    headers:{
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer '+SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': opts.prefer||'',
+      ...opts.headers
+    }
+  });
+}
+
+async function connectSupabase(){
+  const url=document.getElementById('sb-url').value.trim().replace(/\/$/,'');
+  const key=document.getElementById('sb-key').value.trim();
+  const err=document.getElementById('setup-err');
+  const btn=document.getElementById('connect-btn');
+  if(!url||!key){err.textContent='请填写 URL 和 Key';return;}
+  if(!url.startsWith('https://')){err.textContent='URL 格式不正确';return;}
+  err.textContent=''; btn.textContent='连接中...'; btn.disabled=true;
+  SB_URL=url; SB_KEY=key;
+  try{
+    // Create tables if not exist via RPC or just try inserting
+    // First check connection
+    const r=await sbFetch('notes?limit=1',{headers:{'Range':'0-0'}});
+    if(r.status===200||r.status===206||r.status===416){
+      // Table exists, good
+    } else if(r.status===404||r.status===400){
+      // Need to create tables - show SQL instructions
+      err.innerHTML='请先在 Supabase SQL Editor 中执行建表 SQL（见下方提示）';
+      showSQLHint();
+      btn.textContent='连接并初始化数据库'; btn.disabled=false;
+      return;
+    } else {
+      throw new Error('连接失败，请检查 URL 和 Key 是否正确');
+    }
+    // Save to localStorage
+    localStorage.setItem('sb_url', url);
+    localStorage.setItem('sb_key', key);
+    useCloud=true;
+    document.getElementById('setup-screen').classList.add('hidden');
+    document.getElementById('sync-bar').style.display='flex';
+    await loadFromCloud();
+    setSyncStatus('ok','已连接云端');
+    showToast('云端连接成功 ✓');
+  }catch(e){
+    err.textContent=e.message||'连接失败，请检查信息是否正确';
+    btn.textContent='连接并初始化数据库'; btn.disabled=false;
+  }
+}
+
+function showSQLHint(){
+  const existing=document.getElementById('sql-hint');
+  if(existing) return;
+  const div=document.createElement('div');
+  div.id='sql-hint';
+  div.style.cssText='margin-top:14px;padding:12px;background:var(--bg3);border-radius:var(--radius-sm);font-size:11px;color:var(--text2);line-height:1.8';
+  div.innerHTML=`<strong style="color:var(--text)">请在 Supabase → SQL Editor 中执行以下 SQL：</strong><br><br>
+<code style="font-size:10px;color:var(--text);background:var(--bg2);padding:8px;border-radius:4px;display:block;white-space:pre;overflow-x:auto">CREATE TABLE notes (
+  id text PRIMARY KEY,
+  title text,
+  body text,
+  cat text,
+  tags text,
+  source_file text,
+  created text,
+  updated_at timestamptz DEFAULT now()
+);
+CREATE TABLE flashcards (
+  id text PRIMARY KEY,
+  q text,
+  a text,
+  created_at timestamptz DEFAULT now()
+);</code><br>
+执行后点击「连接并初始化数据库」重试`;
+  document.querySelector('.setup-card').appendChild(div);
+}
+
+function skipSetup(){
+  document.getElementById('setup-screen').classList.add('hidden');
+  useCloud=false;
+  showToast('已跳过，使用本地存储');
+  renderNotes(); updateStats();
+}
+
+function openSettings(){
+  document.getElementById('sb-url').value=SB_URL;
+  document.getElementById('sb-key').value=SB_KEY;
+  document.getElementById('setup-screen').classList.remove('hidden');
+}
+
+function setSyncStatus(status, text){
+  const dot=document.getElementById('sync-dot');
+  dot.className='sync-dot '+status;
+  document.getElementById('sync-text').textContent=text;
+}
+
+// ── Cloud data ops ──
+async function loadFromCloud(){
+  setSyncStatus('syncing','同步中...');
+  try{
+    const [nr,fr]=await Promise.all([
+      sbFetch('notes?order=created.desc'),
+      sbFetch('flashcards?order=created_at.asc')
+    ]);
+    if(!nr.ok||!fr.ok) throw new Error('加载失败');
+    const [ns,fs]=await Promise.all([nr.json(),fr.json()]);
+    notes=ns.map(n=>({id:n.id,title:n.title,body:n.body,cat:n.cat,tags:n.tags,sourceFile:n.source_file,created:n.created}));
+    flashcards=fs.map(f=>({id:f.id,q:f.q,a:f.a}));
+    persistLocal(); renderNotes(); updateStats();
+    setSyncStatus('ok','已同步 · '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){
+    setSyncStatus('err','同步失败');
+  }
+}
+
+async function saveNoteCloud(n){
+  setSyncStatus('syncing','保存中...');
+  try{
+    const r=await sbFetch('notes',{
+      method:'POST',
+      prefer:'resolution=merge-duplicates',
+      body:JSON.stringify({id:n.id,title:n.title,body:n.body,cat:n.cat||null,tags:n.tags||null,source_file:n.sourceFile||null,created:n.created,updated_at:new Date().toISOString()})
+    });
+    if(!r.ok) throw new Error();
+    setSyncStatus('ok','已保存到云端 ✓');
+  }catch(e){setSyncStatus('err','云端保存失败');}
+}
+
+async function deleteNoteCloud(id){
+  try{
+    await sbFetch('notes?id=eq.'+id,{method:'DELETE'});
+    setSyncStatus('ok','已删除');
+  }catch(e){setSyncStatus('err','删除失败');}
+}
+
+async function saveFlashCloud(f){
+  try{
+    await sbFetch('flashcards',{method:'POST',prefer:'resolution=merge-duplicates',body:JSON.stringify({id:f.id,q:f.q,a:f.a})});
+  }catch(e){}
+}
+
+async function deleteFlashCloud(id){
+  try{await sbFetch('flashcards?id=eq.'+id,{method:'DELETE'});}catch(e){}
+}
+
+// ── Local fallback ──
+function persistLocal(){
+  localStorage.setItem('kb_notes',JSON.stringify(notes));
+  localStorage.setItem('kb_flash',JSON.stringify(flashcards));
+}
 
 const CAT_STYLE={
   '数学':{bg:'#e6f1fb',color:'#0c447c'},'英语':{bg:'#e1f5ee',color:'#085041'},
@@ -402,29 +589,22 @@ const FILE_ICONS={'pdf':'📕','doc':'📘','docx':'📘','xls':'📗','xlsx':'�
 const FILE_COLORS={'pdf':'#faece7','doc':'#e6f1fb','docx':'#e6f1fb','xls':'#eaf3de','xlsx':'#eaf3de','csv':'#eaf3de','txt':'#f1efe8','md':'#eeedfe','jpg':'#fbeaf0','jpeg':'#fbeaf0','png':'#fbeaf0','gif':'#fbeaf0','webp':'#fbeaf0','bmp':'#fbeaf0'};
 
 function cs(cat){return CAT_STYLE[cat]||{bg:'#f1efe8',color:'#444441'};}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function fmtSize(b){return b<1024?b+'B':b<1048576?(b/1024).toFixed(1)+'KB':(b/1048576).toFixed(1)+'MB';}
-function fileExt(name){return (name.split('.').pop()||'').toLowerCase();}
-function fileIcon(name){return FILE_ICONS[fileExt(name)]||'📄';}
-function fileBg(name){return FILE_COLORS[fileExt(name)]||'#f1efe8';}
+function fileExt(n){return(n.split('.').pop()||'').toLowerCase();}
+function fileIcon(n){return FILE_ICONS[fileExt(n)]||'📄';}
+function fileBg(n){return FILE_COLORS[fileExt(n)]||'#f1efe8';}
 
 let notes=JSON.parse(localStorage.getItem('kb_notes')||'[]');
 let flashcards=JSON.parse(localStorage.getItem('kb_flash')||'[]');
-let editingId=null,viewingId=null,fcIdx=0,currentCat='';
-let currentFile=null;
+let editingId=null,viewingId=null,fcIdx=0,currentCat='',currentFile=null;
 
-function save(){
-  localStorage.setItem('kb_notes',JSON.stringify(notes));
-  localStorage.setItem('kb_flash',JSON.stringify(flashcards));
-}
-
-function showToast(msg,duration=2500){
+function showToast(msg,d=2500){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),duration);
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),d);
 }
 
-// ── Tab / nav ──
 function switchTab(sec,el){
   document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
@@ -437,12 +617,11 @@ function switchTab(sec,el){
   document.getElementById('content').scrollTop=0;
 }
 
-// ── Cards ──
 function makeCard(n){
   const c=cs(n.cat);
-  const ext=n.sourceFile?fileExt(n.sourceFile):'';
   const iconBg=n.sourceFile?fileBg(n.sourceFile):'var(--bg3)';
   const iconEmoji=n.sourceFile?fileIcon(n.sourceFile):'📝';
+  const ext=n.sourceFile?fileExt(n.sourceFile):'';
   const catBadge=n.cat?`<span class="tag" style="background:${c.bg};color:${c.color}">${n.cat}</span>`:'';
   const tags=(n.tags||'').split(',').map(t=>t.trim()).filter(Boolean).map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
   const fileBadge=n.sourceFile?`<span class="tag" style="background:${iconBg};color:var(--text2)">${iconEmoji} ${ext.toUpperCase()}</span>`:'';
@@ -458,10 +637,7 @@ function makeCard(n){
 
 function renderNotes(){
   const q=(document.getElementById('search').value||'').toLowerCase();
-  const filtered=notes.filter(n=>
-    (!currentCat||n.cat===currentCat)&&
-    (!q||(n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||'').toLowerCase().includes(q)))
-  ).slice().reverse();
+  const filtered=notes.filter(n=>(!currentCat||n.cat===currentCat)&&(!q||(n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||'').toLowerCase().includes(q)))).slice().reverse();
   const empty=`<div class="empty"><div class="empty-icon">📝</div><p>还没有笔记<br>点击右下角 + 开始记录</p></div>`;
   const hl=document.getElementById('home-list');
   if(hl) hl.innerHTML=notes.length?notes.slice().reverse().slice(0,5).map(makeCard).join(''):empty;
@@ -472,10 +648,9 @@ function renderNotes(){
 
 function updateCats(){
   const cats=[...new Set(notes.map(n=>n.cat).filter(Boolean))];
-  const sc=document.getElementById('cat-scroll');
-  if(!sc) return;
+  const sc=document.getElementById('cat-scroll');if(!sc)return;
   sc.innerHTML=`<button class="cat-chip all" onclick="filterCat('')">全部</button>`+
-    cats.map(c=>{const s=cs(c);return `<button class="cat-chip" style="background:${s.bg};color:${s.color}" onclick="filterCat('${c}')">${c}</button>`;}).join('');
+    cats.map(c=>{const s=cs(c);return`<button class="cat-chip" style="background:${s.bg};color:${s.color}" onclick="filterCat('${c}')">${c}</button>`;}).join('');
 }
 function filterCat(cat){currentCat=cat;renderNotes();}
 
@@ -484,27 +659,23 @@ function updateStats(){
   document.getElementById('s-notes').textContent=notes.length;
   document.getElementById('s-flash').textContent=flashcards.length;
   document.getElementById('s-cats').textContent=cats.size;
-  const bn=document.getElementById('b-notes'); bn.textContent=notes.length; bn.style.display=notes.length?'block':'none';
-  const bf=document.getElementById('b-flash'); bf.textContent=flashcards.length; bf.style.display=flashcards.length?'block':'none';
+  const bn=document.getElementById('b-notes');bn.textContent=notes.length;bn.style.display=notes.length?'block':'none';
+  const bf=document.getElementById('b-flash');bf.textContent=flashcards.length;bf.style.display=flashcards.length?'block':'none';
   document.getElementById('hdr-sub').textContent=notes.length?`共 ${notes.length} 条笔记`:'个人学习空间';
 }
 
 // ── File parsing ──
-function setProcessing(show, text='正在解析文件...'){
-  const box=document.getElementById('processing-box');
-  box.classList.toggle('show',show);
+function setProcessing(show,text='正在解析文件...'){
+  document.getElementById('processing-box').classList.toggle('show',show);
   if(text) document.getElementById('processing-text').textContent=text;
 }
-
 function showFilePreview(file){
-  const fp=document.getElementById('file-preview');
-  fp.classList.add('show');
+  document.getElementById('file-preview').classList.add('show');
   document.getElementById('fp-icon').textContent=fileIcon(file.name);
   document.getElementById('fp-name').textContent=file.name;
   document.getElementById('fp-size').textContent=fmtSize(file.size);
   document.getElementById('upload-zone').style.display='none';
 }
-
 function clearFile(){
   currentFile=null;
   document.getElementById('file-preview').classList.remove('show');
@@ -512,131 +683,56 @@ function clearFile(){
   document.getElementById('file-input').value='';
   setProcessing(false);
 }
-
 async function handleFile(file){
-  if(!file) return;
-  currentFile=file;
-  showFilePreview(file);
+  if(!file)return;
+  currentFile=file;showFilePreview(file);
   const ext=fileExt(file.name);
-  const titleInput=document.getElementById('n-title');
-  const bodyInput=document.getElementById('n-body');
-
-  // pre-fill title from filename
-  if(!titleInput.value){
-    titleInput.value=file.name.replace(/\.[^.]+$/,'');
-  }
-
+  if(!document.getElementById('n-title').value) document.getElementById('n-title').value=file.name.replace(/\.[^.]+$/,'');
   setProcessing(true,'正在解析文件...');
-  try {
+  try{
     let text='';
-
-    if(ext==='pdf'){
-      text=await parsePDF(file);
-    } else if(ext==='docx'||ext==='doc'){
-      text=await parseDocx(file);
-    } else if(ext==='xlsx'||ext==='xls'){
-      text=await parseExcel(file);
-    } else if(ext==='csv'){
-      text=await parseCSV(file);
-    } else if(ext==='txt'||ext==='md'){
-      text=await parsePlainText(file);
-    } else if(['jpg','jpeg','png','gif','webp','bmp'].includes(ext)){
-      setProcessing(true,'正在用 AI 识别图片内容...');
-      text=await parseImage(file);
-    } else {
-      showToast('不支持此文件格式');
-      setProcessing(false);
-      return;
-    }
-
-    if(text && text.trim()){
-      bodyInput.value=text.trim().slice(0,8000); // limit to 8000 chars
-      showToast('文件内容已提取 ✓');
-    } else {
-      showToast('未能提取到文本内容，请手动输入');
-    }
-  } catch(e){
-    console.error(e);
-    showToast('解析失败：'+e.message);
-  }
+    if(ext==='pdf') text=await parsePDF(file);
+    else if(ext==='docx'||ext==='doc') text=await parseDocx(file);
+    else if(ext==='xlsx'||ext==='xls') text=await parseExcel(file);
+    else if(ext==='csv'||ext==='txt'||ext==='md') text=await file.text();
+    else if(['jpg','jpeg','png','gif','webp','bmp'].includes(ext)){setProcessing(true,'AI 识别图片内容...');text=await parseImage(file);}
+    else{showToast('不支持此格式');setProcessing(false);return;}
+    if(text&&text.trim()){document.getElementById('n-body').value=text.trim().slice(0,8000);showToast('内容已提取 ✓');}
+    else showToast('未能提取文字，请手动输入');
+  }catch(e){showToast('解析失败：'+e.message);}
   setProcessing(false);
 }
-
 async function parsePDF(file){
-  if(typeof pdfjsLib==='undefined') throw new Error('PDF解析库未加载');
+  if(typeof pdfjsLib==='undefined') throw new Error('PDF库未加载');
   const ab=await file.arrayBuffer();
   const pdf=await pdfjsLib.getDocument({data:ab}).promise;
-  let text='';
-  const maxPages=Math.min(pdf.numPages, 50);
-  setProcessing(true,`正在解析 PDF（共${pdf.numPages}页）...`);
-  for(let i=1;i<=maxPages;i++){
-    const page=await pdf.getPage(i);
-    const content=await page.getTextContent();
-    const pageText=content.items.map(item=>item.str).join(' ');
-    text+=pageText+'\n';
-  }
-  if(pdf.numPages>50) text+=`\n[已截取前50页，共${pdf.numPages}页]`;
+  let text='';const max=Math.min(pdf.numPages,50);
+  setProcessing(true,`解析 PDF（共${pdf.numPages}页）...`);
+  for(let i=1;i<=max;i++){const p=await pdf.getPage(i);const c=await p.getTextContent();text+=c.items.map(x=>x.str).join(' ')+'\n';}
+  if(pdf.numPages>50) text+=`\n[已截取前50页]`;
   return text;
 }
-
 async function parseDocx(file){
-  if(typeof mammoth==='undefined') throw new Error('Word解析库未加载');
+  if(typeof mammoth==='undefined') throw new Error('Word库未加载');
   const ab=await file.arrayBuffer();
-  const result=await mammoth.extractRawText({arrayBuffer:ab});
-  return result.value;
+  return (await mammoth.extractRawText({arrayBuffer:ab})).value;
 }
-
 async function parseExcel(file){
-  if(typeof XLSX==='undefined') throw new Error('Excel解析库未加载');
-  const ab=await file.arrayBuffer();
-  const wb=XLSX.read(ab,{type:'array'});
-  let text='';
-  wb.SheetNames.forEach(name=>{
-    const ws=wb.Sheets[name];
-    const csv=XLSX.utils.sheet_to_csv(ws);
-    text+=`【${name}】\n${csv}\n\n`;
-  });
-  return text;
+  if(typeof XLSX==='undefined') throw new Error('Excel库未加载');
+  const ab=await file.arrayBuffer();const wb=XLSX.read(ab,{type:'array'});
+  return wb.SheetNames.map(n=>`【${n}】\n${XLSX.utils.sheet_to_csv(wb.Sheets[n])}`).join('\n\n');
 }
-
-async function parseCSV(file){
-  const text=await file.text();
-  return text;
-}
-
-async function parsePlainText(file){
-  return await file.text();
-}
-
 async function parseImage(file){
   return new Promise((resolve,reject)=>{
     const reader=new FileReader();
     reader.onload=async(e)=>{
-      const base64=e.target.result.split(',')[1];
-      const mediaType=file.type||'image/jpeg';
       try{
-        const resp=await fetch('https://api.anthropic.com/v1/messages',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({
-            model:'claude-sonnet-4-20250514',
-            max_tokens:2000,
-            messages:[{role:'user',content:[
-              {type:'image',source:{type:'base64',media_type:mediaType,data:base64}},
-              {type:'text',text:'请提取并整理这张图片中的所有文字内容。如果是手写笔记，请尽量识别。如果是图表或图片，请描述其主要内容。用中文输出，保持原有结构。'}
-            ]}]
-          })
-        });
-        const data=await resp.json();
-        resolve(data.content.map(i=>i.text||'').join(''));
+        const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:file.type||'image/jpeg',data:e.target.result.split(',')[1]}},{type:'text',text:'提取并整理这张图片中的所有文字内容。如果是手写笔记请识别文字，如果是图表请描述内容。用中文输出，保持原有结构。'}]}]})});
+        const data=await resp.json();resolve(data.content.map(i=>i.text||'').join(''));
       }catch(err){reject(err);}
-    };
-    reader.onerror=reject;
-    reader.readAsDataURL(file);
+    };reader.onerror=reject;reader.readAsDataURL(file);
   });
 }
-
-// Drag & drop
 const uz=document.getElementById('upload-zone');
 uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('dragover');});
 uz.addEventListener('dragleave',()=>uz.classList.remove('dragover'));
@@ -655,150 +751,123 @@ function openNoteDrawer(id){
   document.getElementById('note-drawer-bg').classList.add('open');
   setTimeout(()=>document.getElementById('note-drawer').classList.add('open'),10);
 }
-function closeNoteDrawer(){
-  document.getElementById('note-drawer').classList.remove('open');
-  document.getElementById('note-drawer-bg').classList.remove('open');
-}
-function saveNote(){
+function closeNoteDrawer(){document.getElementById('note-drawer').classList.remove('open');document.getElementById('note-drawer-bg').classList.remove('open');}
+async function saveNote(){
   const title=document.getElementById('n-title').value.trim();
   const body=document.getElementById('n-body').value.trim();
   if(!title||!body){showToast('请填写标题和内容');return;}
-  const cat=document.getElementById('n-cat').value;
-  const tags=document.getElementById('n-tags').value.trim();
-  const sourceFile=currentFile?currentFile.name:null;
-  if(editingId){
-    const i=notes.findIndex(n=>n.id===editingId);
-    if(i>-1) notes[i]={...notes[i],title,body,cat,tags,sourceFile:sourceFile||notes[i].sourceFile};
-  } else {
-    notes.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),title,body,cat,tags,sourceFile,created:new Date().toLocaleDateString('zh-CN')});
-  }
-  save(); closeNoteDrawer(); renderNotes(); showToast('已保存 ✓');
+  const n={id:editingId||(Date.now().toString(36)+Math.random().toString(36).slice(2)),title,body,cat:document.getElementById('n-cat').value,tags:document.getElementById('n-tags').value.trim(),sourceFile:currentFile?currentFile.name:(editingId?notes.find(x=>x.id===editingId)?.sourceFile:null),created:editingId?notes.find(x=>x.id===editingId)?.created:new Date().toLocaleDateString('zh-CN')};
+  if(editingId){const i=notes.findIndex(x=>x.id===editingId);if(i>-1)notes[i]=n;}
+  else notes.push(n);
+  persistLocal();
+  if(useCloud) await saveNoteCloud(n);
+  closeNoteDrawer();renderNotes();showToast('已保存 ✓');
 }
-
 function viewNote(id){
-  viewingId=id;
-  const n=notes.find(x=>x.id===id); if(!n) return;
+  viewingId=id;const n=notes.find(x=>x.id===id);if(!n)return;
   document.getElementById('v-title').textContent=n.title;
   const c=cs(n.cat);
   document.getElementById('v-cat').innerHTML=n.cat?`<span class="tag" style="background:${c.bg};color:${c.color};margin-bottom:8px;display:inline-block">${n.cat}</span>`:'';
-  const fb=document.getElementById('v-file-badge');
-  fb.innerHTML=n.sourceFile?`<span class="view-file-badge">${fileIcon(n.sourceFile)} 来源：${n.sourceFile}</span>`:'';
+  document.getElementById('v-file-badge').innerHTML=n.sourceFile?`<span class="view-file-badge">${fileIcon(n.sourceFile)} 来源：${n.sourceFile}</span>`:'';
   document.getElementById('v-body').textContent=n.body;
-  const tags=(n.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
-  document.getElementById('v-tags').innerHTML=tags.map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
+  document.getElementById('v-tags').innerHTML=(n.tags||'').split(',').map(t=>t.trim()).filter(Boolean).map(t=>`<span class="tag" style="background:var(--bg3);color:var(--text2)">${t}</span>`).join('');
   document.getElementById('view-drawer-bg').classList.add('open');
   setTimeout(()=>document.getElementById('view-drawer').classList.add('open'),10);
 }
-function closeViewDrawer(){
-  document.getElementById('view-drawer').classList.remove('open');
-  document.getElementById('view-drawer-bg').classList.remove('open');
-}
+function closeViewDrawer(){document.getElementById('view-drawer').classList.remove('open');document.getElementById('view-drawer-bg').classList.remove('open');}
 function editNote(){closeViewDrawer();setTimeout(()=>openNoteDrawer(viewingId),200);}
-function deleteNote(){
+async function deleteNote(){
   if(!confirm('确定删除这条笔记？'))return;
   notes=notes.filter(n=>n.id!==viewingId);
-  save();closeViewDrawer();renderNotes();showToast('已删除');
+  persistLocal();
+  if(useCloud) await deleteNoteCloud(viewingId);
+  closeViewDrawer();renderNotes();showToast('已删除');
 }
 
 // ── Flashcards ──
 function renderFlash(){
   const area=document.getElementById('flash-area');
-  if(!flashcards.length){
-    area.innerHTML=`<div class="empty"><div class="empty-icon">🃏</div><p>还没有闪卡<br>手动新建，或在笔记里用 AI 自动生成</p></div>`;
-    return;
-  }
-  fcIdx=Math.min(fcIdx,flashcards.length-1);
-  const fc=flashcards[fcIdx];
-  area.innerHTML=`<div class="fc-area">
-    <div class="fc-prog">${fcIdx+1} / ${flashcards.length}</div>
-    <div class="fc-card" id="fc-card" onclick="revealFlash()">
-      <div class="fc-side" id="fc-side">问题</div>
-      <div class="fc-q">${esc(fc.q)}</div>
-      <div class="fc-a">${esc(fc.a)}</div>
-    </div>
-    <div class="fc-hint">点击卡片显示答案</div>
-    <div class="fc-nav">
-      <button class="btn" onclick="prevFlash()">← 上一张</button>
-      <button class="btn" onclick="nextFlash()">下一张 →</button>
-    </div>
-    <button class="btn btn-danger btn-block" onclick="delFlash()">删除这张</button>
-  </div>`;
+  if(!flashcards.length){area.innerHTML=`<div class="empty"><div class="empty-icon">🃏</div><p>还没有闪卡<br>手动新建或在笔记里 AI 生成</p></div>`;return;}
+  fcIdx=Math.min(fcIdx,flashcards.length-1);const fc=flashcards[fcIdx];
+  area.innerHTML=`<div class="fc-area"><div class="fc-prog">${fcIdx+1} / ${flashcards.length}</div><div class="fc-card" id="fc-card" onclick="revealFlash()"><div class="fc-side" id="fc-side">问题</div><div class="fc-q">${esc(fc.q)}</div><div class="fc-a">${esc(fc.a)}</div></div><div class="fc-hint">点击卡片显示答案</div><div class="fc-nav"><button class="btn" onclick="prevFlash()">← 上一张</button><button class="btn" onclick="nextFlash()">下一张 →</button></div><button class="btn btn-danger btn-block" onclick="delFlash()">删除这张</button></div>`;
 }
-function revealFlash(){
-  const card=document.getElementById('fc-card');
-  card.classList.toggle('revealed');
-  document.getElementById('fc-side').textContent=card.classList.contains('revealed')?'答案':'问题';
-}
+function revealFlash(){const c=document.getElementById('fc-card');c.classList.toggle('revealed');document.getElementById('fc-side').textContent=c.classList.contains('revealed')?'答案':'问题';}
 function prevFlash(){fcIdx=(fcIdx-1+flashcards.length)%flashcards.length;renderFlash();}
 function nextFlash(){fcIdx=(fcIdx+1)%flashcards.length;renderFlash();}
-function delFlash(){if(!confirm('删除这张？'))return;flashcards.splice(fcIdx,1);fcIdx=Math.max(0,fcIdx-1);save();updateStats();renderFlash();}
+async function delFlash(){
+  if(!confirm('删除这张？'))return;
+  const id=flashcards[fcIdx].id;
+  flashcards.splice(fcIdx,1);fcIdx=Math.max(0,fcIdx-1);
+  persistLocal();
+  if(useCloud) await deleteFlashCloud(id);
+  updateStats();renderFlash();
+}
 function openFlashDrawer(){document.getElementById('fc-q').value='';document.getElementById('fc-a').value='';document.getElementById('flash-drawer-bg').classList.add('open');setTimeout(()=>document.getElementById('flash-drawer').classList.add('open'),10);}
 function closeFlashDrawer(){document.getElementById('flash-drawer').classList.remove('open');document.getElementById('flash-drawer-bg').classList.remove('open');}
-function saveFlash(){
-  const q=document.getElementById('fc-q').value.trim();
-  const a=document.getElementById('fc-a').value.trim();
+async function saveFlash(){
+  const q=document.getElementById('fc-q').value.trim();const a=document.getElementById('fc-a').value.trim();
   if(!q||!a){showToast('请填写问题和答案');return;}
-  flashcards.push({id:Date.now().toString(36),q,a});
-  save();updateStats();closeFlashDrawer();renderFlash();showToast('已保存 ✓');
+  const f={id:Date.now().toString(36),q,a};
+  flashcards.push(f);persistLocal();
+  if(useCloud) await saveFlashCloud(f);
+  updateStats();closeFlashDrawer();renderFlash();showToast('已保存 ✓');
 }
 
 async function genFlash(){
   const n=notes.find(x=>x.id===viewingId);if(!n)return;
   closeViewDrawer();
   document.querySelectorAll('.nav-item')[2].click();
-  document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⏳</div><p>AI 正在分析笔记生成闪卡...</p></div>`;
+  document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⏳</div><p>AI 正在生成闪卡...</p></div>`;
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:`请根据以下笔记生成3-5张闪卡。只返回JSON数组，不含其他文字：\n[{"q":"问题","a":"答案"}]\n\n标题：${n.title}\n内容：${n.body.slice(0,3000)}`}]})});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,messages:[{role:'user',content:`请根据以下笔记生成3-5张闪卡。只返回JSON数组：\n[{"q":"问题","a":"答案"}]\n\n标题：${n.title}\n内容：${n.body.slice(0,3000)}`}]})});
     const data=await resp.json();
-    const text=data.content.map(i=>i.text||'').join('');
-    const cards=JSON.parse(text.replace(/```json|```/g,'').trim());
-    cards.forEach(c=>flashcards.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),q:c.q,a:c.a}));
-    save();updateStats();renderFlash();showToast(`已生成 ${cards.length} 张闪卡 ✓`);
-  }catch(e){
-    document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><p>生成失败，请手动创建闪卡</p></div>`;
-  }
+    const cards=JSON.parse(data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim());
+    for(const c of cards){const f={id:Date.now().toString(36)+Math.random().toString(36).slice(2),q:c.q,a:c.a};flashcards.push(f);if(useCloud)await saveFlashCloud(f);}
+    persistLocal();updateStats();renderFlash();showToast(`已生成 ${cards.length} 张闪卡 ✓`);
+  }catch(e){document.getElementById('flash-area').innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><p>生成失败，请手动创建</p></div>`;}
 }
 
-// ── AI chat ──
 async function sendAI(){
-  const input=document.getElementById('ai-input');
-  const q=input.value.trim();if(!q)return;
+  const input=document.getElementById('ai-input');const q=input.value.trim();if(!q)return;
   input.value='';
   const msgs=document.getElementById('ai-msgs');
   msgs.innerHTML+=`<div class="msg user">${esc(q)}</div>`;
-  const lid='l'+Date.now();
-  msgs.innerHTML+=`<div class="msg ai loading" id="${lid}">思考中...</div>`;
+  const lid='l'+Date.now();msgs.innerHTML+=`<div class="msg ai loading" id="${lid}">思考中...</div>`;
   msgs.scrollTop=msgs.scrollHeight;
   const ctx=notes.slice(-10).map(n=>`[${n.cat||'未分类'}] ${n.title}: ${n.body.slice(0,500)}`).join('\n');
-  const sys=ctx?`你是用户的私人学习助手。用户的笔记如下：\n\n${ctx}`:'你是用户的私人学习助手。';
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:q}]})});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:ctx?`你是用户的私人学习助手。用户的笔记：\n${ctx}`:'你是用户的私人学习助手。',messages:[{role:'user',content:q}]})});
     const data=await resp.json();
     document.getElementById(lid).textContent=data.content.map(i=>i.text||'').join('');
     document.getElementById(lid).classList.remove('loading');
-  }catch(e){
-    document.getElementById(lid).textContent='AI 暂时无法连接，请稍后重试。';
-  }
+  }catch(e){document.getElementById(lid).textContent='AI 暂时无法连接，请稍后重试。';}
   msgs.scrollTop=msgs.scrollHeight;
 }
 
-// ── Export ──
 function exportData(){
   const blob=new Blob([JSON.stringify({notes,flashcards,exported:new Date().toISOString()},null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=`知识库备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')}.json`;
-  a.click();
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`知识库备份_${new Date().toLocaleDateString('zh-CN').replace(/\//g,'-')}.json`;a.click();
   showToast('备份已下载 ✓');
 }
 
-// ── Service Worker ──
+// ── Init ──
+const savedUrl='https://rvssjezchxphpkrgdkhc.supabase.co';//
+const savedKey='sb_publishable_DvpeFMaEu3Fz9yvywBIZeQ_RnEWSeI-';//
+if(true){
+  SB_URL=savedUrl;SB_KEY=savedKey;useCloud=true;
+  document.getElementById('setup-screen').classList.add('hidden');
+  document.getElementById('sync-bar').style.display='flex';
+  loadFromCloud();
+} else {
+  // Show setup screen
+}
+renderNotes();updateStats();
+
 if('serviceWorker' in navigator){
-  const sw=`const C='kb-v4';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).catch(()=>caches.match('/'))));});`;
+  const sw=`const C='kb-v5';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).catch(()=>caches.match('/'))));});`;
   navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
 }
-
-renderNotes(); updateStats();
 </script>
 </body>
 </html>

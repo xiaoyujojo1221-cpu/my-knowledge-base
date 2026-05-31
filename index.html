@@ -531,14 +531,16 @@ async function loadFromCloud(){
       sbFetch('notes?order=created.desc'),
       sbFetch('flashcards?order=created_at.asc')
     ]);
-    if(!nr.ok||!fr.ok) throw new Error('加载失败');
+    if(!nr.ok||!fr.ok) throw new Error('加载失败 '+nr.status);
     const [ns,fs]=await Promise.all([nr.json(),fr.json()]);
     notes=ns.map(n=>({id:n.id,title:n.title,body:n.body,cat:n.cat,tags:n.tags,sourceFile:n.source_file,created:n.created}));
     flashcards=fs.map(f=>({id:f.id,q:f.q,a:f.a}));
     persistLocal(); renderNotes(); updateStats();
     setSyncStatus('ok','已同步 · '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}));
   }catch(e){
-    setSyncStatus('err','同步失败');
+    console.error('Cloud sync error:',e);
+    setSyncStatus('err','云端未连接，数据保存在本地');
+    useCloud=false;
   }
 }
 
@@ -852,17 +854,14 @@ function exportData(){
 }
 
 // ── Init ──
-const savedUrl='https://rvssjezchxphpkrgdkhc.supabase.co';//
-const savedKey='sb_publishable_DvpeFMaEu3Fz9yvywBIZeQ_RnEWSeI-';//
-if(true){
-  SB_URL=savedUrl;SB_KEY=savedKey;useCloud=true;
-  document.getElementById('setup-screen').classList.add('hidden');
-  document.getElementById('sync-bar').style.display='flex';
-  loadFromCloud();
-} else {
-  // Show setup screen
-}
+// Show app immediately with local data, sync cloud in background
+document.getElementById('setup-screen').classList.add('hidden');
+document.getElementById('sync-bar').style.display='flex';
 renderNotes();updateStats();
+setTimeout(async()=>{
+  try{ await loadFromCloud(); }
+  catch(e){ setSyncStatus('err','云端未连接，数据保存在本地'); useCloud=false; }
+},100);
 
 if('serviceWorker' in navigator){
   const sw=`const C='kb-v5';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['/'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).catch(()=>caches.match('/'))));});`;
